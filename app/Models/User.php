@@ -72,6 +72,12 @@ class User extends Authenticatable
         if ($this->foto) {
             return asset("imgs/users/" . $this->foto);
         }
-            return asset("imgs/users/default.png");
+        return asset("imgs/users/default.png");
+    }
+
+    // RELACIONES
+    public function datos_personal()
+    {
+        return $this->hasOne(DatosPersonal::class, 'user_id');
     }
 }
