@@ -7,20 +7,8 @@ import { onMounted, onUnmounted } from "vue";
 export const useMenu = () => {
     const { setLoading } = useApp();
     const store = useMenuStore();
-    const { drawer, mobile, rail, width, menu_open, url_actual } =
+    const {menu_open, url_actual } =
         storeToRefs(store);
-
-    const toggleDrawer = (value) => {
-        if (!mobile.value) {
-            rail.value = !rail.value;
-            store.toggleDrawer(true);
-        } else {
-            store.toggleDrawer(value);
-        }
-    };
-    const toggleRail = (value) => {
-        store.toggleRail(value);
-    };
 
     const setMenuOpen = (val) => {
         store.setMenuOpen(val);

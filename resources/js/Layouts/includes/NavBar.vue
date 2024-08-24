@@ -132,7 +132,7 @@ onMounted(() => {
                         >
                             <!--begin:Menu link-->
                             <span class="menu-link">
-                                <Link :href="route('inicio')" class="menu-title"
+                                <Link :href="route('configuracions.index')" class="menu-title"
                                     >Configuración</Link
                                 >
                                 <span class="menu-arrow d-lg-none"></span>

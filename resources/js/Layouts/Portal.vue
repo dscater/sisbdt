@@ -22,7 +22,7 @@ onMounted(() => {
     <div class="d-flex flex-column flex-root" id="kt_app_root">
 		<Header></Header>
 		<slot></slot>
-		<!-- <Footer></Footer> -->
+		<Footer></Footer>
     </div>
     <!--end::Root-->
     <!--begin::Scrolltop-->

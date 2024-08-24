@@ -4,29 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Configuracion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 class ConfiguracionController extends Controller
 {
     public $validacion = [
-        "razon_social" => "required|min:2",
         "nombre_sistema" => "required|min:2",
-        "nit" => "required|min:2",
-        "actividad" => "required|min:2",
-        "dir" => "required|min:2",
-        "terminos_condiciones" => "required|min:2",
     ];
 
     public $messages = [
-        "razon_social.required" => "Este campo es obligatorio",
-        "razon_social.min" => "Debes ingresar al menos :min caracteres",
         "nombre_sistema.required" => "Este campo es obligatorio",
         "nombre_sistema.min" => "Debes ingresar al menos :min caracteres",
-        "nit.required" => "Este campo es obligatorio",
-        "nit.min" => "Debes ingresar al menos :min caracteres",
-        "actividad.required" => "Este campo es obligatorio",
-        "actividad.min" => "Debes ingresar al menos :min caracteres",
-        "dir.required" => "Este campo es obligatorio",
-        "dir.min" => "Debes ingresar al menos :min caracteres",
     ];
 
     public function index(Request $request)
@@ -37,7 +26,7 @@ class ConfiguracionController extends Controller
 
         $configuracion = Configuracion::first();
 
-        return Inertia::render("Admin/Configuracions/Index", compact("configuracion"));
+        return Inertia::render("Configuracions/Index", compact("configuracion"));
     }
 
     public function getConfiguracion()
@@ -53,15 +42,7 @@ class ConfiguracionController extends Controller
         $request->validate($this->validacion, $this->messages);
         DB::beginTransaction();
         try {
-
-
             $configuracion->update(array_map("mb_strtoupper", $request->except("logo")));
-            $configuracion->terminos_condiciones = nl2br(mb_strtoupper($request["terminos_condiciones"]));
-
-            $configuracion->host = $request->host;
-            $configuracion->encriptado = $request->encriptado;
-            $configuracion->email = $request->email;
-            $configuracion->password = $request->password;
 
             if ($request->hasFile('logo')) {
                 $antiguo = $configuracion->logo;
@@ -83,7 +64,5 @@ class ConfiguracionController extends Controller
         }
     }
 
-    public function show(Configuracion $configuracion)
-    {
-    }
+    public function show(Configuracion $configuracion) {}
 }
