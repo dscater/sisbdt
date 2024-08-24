@@ -7,6 +7,12 @@ defineOptions({
 import { onMounted } from "vue";
 // componentes
 import { usePage, Head, useForm } from "@inertiajs/vue3";
+
+/* Definimos los datos que recibimos desde el controlador
+    en este caso un unico parametro "parametrizacion".
+    Esto sucede en:
+    return Inertia::render("Parametrizacion/Index", compact("parametrizacion"));
+*/
 const props_page = defineProps({
     parametrizacion: {
         type: Object,
@@ -15,10 +21,13 @@ const props_page = defineProps({
 });
 const { props } = usePage();
 
+// Preparamos el formulario para mostrar y enviar los datos
 let form = null;
 if (props_page.parametrizacion != null) {
+    // si el valor de parametrizacion existe definimos nuestro formulario con esa informacion
     form = useForm(props_page.parametrizacion);
 } else {
+    // caso contrario inicializamos el formulario con valores por defecto
     form = useForm({
         primaria: 0,
         secundaria: 0,
@@ -39,6 +48,7 @@ if (props_page.parametrizacion != null) {
     });
 }
 
+// funcion para enviar los datos del formulario a la ruta definida en nuestro archivo "routes/web.php"
 const enviarFormulario = () => {
     form.post(route("parametrizacions.store"), {
         onSuccess: () => {

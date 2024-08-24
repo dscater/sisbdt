@@ -8,12 +8,21 @@ use Inertia\Inertia;
 
 class ParametrizacionController extends Controller
 {
+    /*
+        Funcion para renderizar y mostrar el componente/interfaz "Index" que se encuentra en la carpeta "Parametrizacion"
+        Enviandole el dato "parametrizacion"
+    */
     public function index()
     {
         $parametrizacion = Parametrizacion::first();
         return Inertia::render("Parametrizacion/Index", compact("parametrizacion"));
     }
 
+    /*
+        Funcion para guardar o actualizar la información de Parametrizacion.
+        Store normalmente se usa para almacenar nueva información; pero en este caso
+        se usa para ambos propositos mediante una validación
+    */
     public function store(Request $request)
     {
         $request->validate([
@@ -73,6 +82,7 @@ class ParametrizacionController extends Controller
             "p_cada_reconocimiento" => $request->p_cada_reconocimiento,
         ];
 
+        // validar si existe actualizamos la informacion caso contrario creamos el registro
         if ($parametrizacion) {
             $parametrizacion->update($datos);
         } else {

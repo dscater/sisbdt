@@ -22,6 +22,11 @@ Route::get('/login', function () {
 
 Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, 'getConfiguracion'])->name("configuracions.getConfiguracion");
 
+/* Usamos las funciones middleware, prefix y group
+    middleware: lo que se ejecuta antes de acceder a una ruta, en este caso "auth" para verificar si existe una sesión iniciada
+    prefix: indica que todas las rutas tendran la palabra "admin" por delante de su url especificada
+    group: ayuda a que en todas las rutas que se encuentran dentro de esta se apliquen todas las demas funciones usadas como en este caso "middleware" y "prefix"
+*/
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
     Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio');
@@ -39,7 +44,6 @@ Route::middleware('auth')->prefix("admin")->group(function () {
 
     Route::get("getUser", [UserController::class, 'getUser'])->name('users.getUser');
     Route::get("permisos", [UserController::class, 'permisos']);
-    Route::get("menu_user", [UserController::class, 'permisos']);
 
     // USUARIOS
     Route::patch("usuarios/actualizaAcceso/{user}", [UsuarioController::class, 'actualizaAcceso'])->name("usuarios.actualizaAcceso");
@@ -55,12 +59,12 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     );
 
     // PARAMETRIZACION
+    // la funcion resource nos ayuda a definir las rutas que se usan normalmente para un CRUD(crear,modificar,mostrar,eliminar)
+    // "only" nos permite indicar que funciones del CRUD usaremos
     Route::resource("parametrizacions", ParametrizacionController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 
     // REPORTES
-    // Route::get('reportes/productos', [ReporteController::class, 'productos'])->name("reportes.productos");
-    // Route::get('reportes/r_productos', [ReporteController::class, 'r_productos'])->name("reportes.r_productos");
 });
 require __DIR__ . '/auth.php';
