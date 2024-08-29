@@ -9,6 +9,6 @@ class PortalController extends Controller
 {
     public function index()
     {
-        return Inertia::render("Portal/Inicio");
+        return view("Portal.index");
     }
 }

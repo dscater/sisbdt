@@ -33,7 +33,7 @@ html {
     display: flex;
     width: 100%;
     min-height: auto;
-    background-image: url(../template/media/misc/bg-1.png)!important;
+    background-image: url(../assets/template/media/misc/bg-1.png)!important;
     background-repeat: repeat;
 }
 

@@ -52,27 +52,4 @@ const { props } = usePage();
     </div>
 </template>
 <style scoped>
-.item_btn {
-    margin: 10px;
-}
-
-.contenido_item i {
-    color: black;
-}
-
-.contenido_item {
-    transition: all 0.8s;
-    color: black;
-    padding: 10px;
-    cursor: pointer;
-    background-color: rgb(248, 229, 229);
-    border: solid 2px rgb(243, 211, 211);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.3em;
-    flex-direction: column;
-}
 </style>

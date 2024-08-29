@@ -18,19 +18,5 @@ onMounted(() => {
 });
 </script>
 <template>
-    <!--begin::Root-->
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
-		<Header></Header>
-		<slot></slot>
-		<Footer></Footer>
-    </div>
-    <!--end::Root-->
-    <!--begin::Scrolltop-->
-    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
-        <i class="ki-duotone ki-arrow-up">
-            <span class="path1"></span>
-            <span class="path2"></span>
-        </i>
-    </div>
-    <!--end::Scrolltop-->
+
 </template>

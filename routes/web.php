@@ -7,18 +7,16 @@ use App\Http\Controllers\PortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [PortalController::class, 'index'])->name('portal.index');
 
-Route::get('/login', function () {
-    if (Auth::check()) {
-        return redirect()->route('inicio');
-    }
-    return Inertia::render('Auth/Login');
-})->name("login");
+Route::get("/login", [LoginController::class, 'index'])->name("login");
+Route::post("/login", [LoginController::class, 'login'])->name("login.store");
+Route::post("/logout", [LoginController::class, 'logout'])->name("login.destroy");
+Route::get("/register", [LoginController::class, 'register'])->name("register");
+Route::post("/register", [LoginController::class, 'register_store'])->name("register.store");
 
 Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, 'getConfiguracion'])->name("configuracions.getConfiguracion");
 
@@ -66,4 +64,4 @@ Route::middleware('auth')->prefix("admin")->group(function () {
 
     // REPORTES
 });
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';
