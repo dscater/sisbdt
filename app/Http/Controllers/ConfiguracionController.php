@@ -26,7 +26,7 @@ class ConfiguracionController extends Controller
 
         $configuracion = Configuracion::first();
 
-        return Inertia::render("Configuracions/Index", compact("configuracion"));
+        return view("Configuracions.index", compact("configuracion"));
     }
 
     public function getConfiguracion()

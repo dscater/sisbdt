@@ -19,10 +19,10 @@ return new class extends Migration
             $table->date("fecha_nacimiento");
             $table->string("lugar_nacimiento", 600);
             $table->string("genero");
-            $table->string("foto", 255);
+            $table->string("foto", 255)->nullable();
             $table->string("fono");
             $table->string("dir");
-            $table->string("hoja_vida", 255);
+            $table->string("hoja_vida", 255)->nullable();
             $table->double("calificacion")->default(0);
             $table->date("fecha_registro")->nullable();
             $table->timestamps();

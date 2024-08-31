@@ -36,12 +36,10 @@
                     <div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
                         id="kt_app_header_menu" data-kt-menu="true">
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                            data-kt-menu-placement="bottom-start" data-kt-menu-offset="-50,0"
-                            class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                        <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                             <!--begin:Menu link-->
                             <span class="menu-link">
-                                <Link :href="route('inicio')" class="menu-title">Inicio</Link>
+                                <a href="{{ route('inicio') }}" class="menu-title">Inicio</a>
                                 <span class="menu-arrow d-lg-none"></span>
                             </span>
                             <!--end:Menu link-->
@@ -49,12 +47,10 @@
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
                         @if (in_array('configuracions.index', Auth::user()->permisos))
-                            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                data-kt-menu-placement="bottom-start" data-kt-menu-offset="-50,0"
-                                class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                            <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                 <!--begin:Menu link-->
                                 <span class="menu-link">
-                                    <Link :href="route('configuracions.index')" class="menu-title">Configuración</Link>
+                                    <a href="{{ route('configuracions.index') }}" class="menu-title">Configuración</a>
                                     <span class="menu-arrow d-lg-none"></span>
                                 </span>
                                 <!--end:Menu link-->
@@ -62,14 +58,12 @@
                         @endif
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        @if (in_array('parametrizacion.index', Auth::user()->permisos))
-                            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                                data-kt-menu-placement="bottom-start" data-kt-menu-offset="-50,0"
-                                class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                        @if (in_array('parametrizacions.index', Auth::user()->permisos))
+                            <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                                 <!--begin:Menu link-->
                                 <span class="menu-link">
-                                    <Link :href="route('parametrizacions.index')" class="menu-title">Parametrización
-                                    </Link>
+                                    <a href="{{ route('parametrizacions.index') }}" class="menu-title">Parametrización
+                                    </a>
                                     <span class="menu-arrow d-lg-none"></span>
                                 </span>
                                 <!--end:Menu link-->
@@ -98,18 +92,18 @@
                                 <div class="menu-content d-flex align-items-center px-3">
                                     <!--begin::Avatar-->
                                     <div class="symbol symbol-50px me-5">
-                                        <img alt="Logo" src="{{ $configuracion->url_logo }}" />
+                                        <img alt="Logo" src="{{ Auth::user()->url_foto }}" />
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Username-->
                                     <div class="d-flex flex-column">
                                         <div class="fw-bold d-flex align-items-center fs-5">
-                                            Max Smith
-                                            <span
-                                                class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
+                                            {{ Auth::user()->full_name }}
                                         </div>
-                                        <a href="#"
-                                            class="fw-semibold text-muted text-hover-primary fs-7">max@kt.com</a>
+                                        <div class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</div>
+                                        <div class="w-100"><span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ Auth::user()->tipo }}</span>
+                                        </div>
+
                                     </div>
                                     <!--end::Username-->
                                 </div>
@@ -120,17 +114,7 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="account/overview.html" class="menu-link px-5">My Profile</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="apps/projects/list.html" class="menu-link px-5">
-                                    <span class="menu-text">My Projects</span>
-                                    <span class="menu-badge">
-                                        <span class="badge badge-light-danger badge-circle fw-bold fs-7">3</span>
-                                    </span>
-                                </a>
+                                <a href="{{ route('perfil') }}" class="menu-link px-5">Perfil</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu separator-->
@@ -138,8 +122,10 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="authentication/layouts/corporate/sign-in.html" class="menu-link px-5">Sign
-                                    Out</a>
+                                <a href="#"
+                                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"
+                                    class="menu-link px-5">Salir</a>
                             </div>
                             <!--end::Menu item-->
                         </div>

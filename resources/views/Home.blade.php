@@ -32,21 +32,23 @@
     <h4 class="text-center text-h4">
         Bienvenid@ {{ Auth::user()->full_name }}
     </h4>
-    <div class="row" v-if="props.auth.user && props.auth.user.tipo == 'POSTULANTE'">
-        <div class="col-md-3 mx-auto item_btn">
-            <a class="contenido_item">
-                Datos Personales <i class="fa fa-arrow-right"></i>
-            </a>
+    @if (Auth::user()->tipo == 'POSTULANTE')
+        <div class="row">
+            <div class="col-md-3 mx-auto item_btn">
+                <a href="{{ route('datos_personals.index') }}" class="contenido_item">
+                    Datos Personales <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="col-md-3 mx-auto item_btn">
+                <a href="{{ route('evaluacions.index') }}" class="contenido_item">
+                    Evaluación <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+            <div class="col-md-3 mx-auto item_btn">
+                <a href="{{ route('datos_otros.index') }}" class="contenido_item">
+                    Otros datos <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
-        <div class="col-md-3 mx-auto item_btn">
-            <a class="contenido_item">
-                Evaluación <i class="fa fa-arrow-right"></i>
-            </a>
-        </div>
-        <div class="col-md-3 mx-auto item_btn">
-            <a class="contenido_item">
-                Otros datos <i class="fa fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
+    @endif
 @endsection

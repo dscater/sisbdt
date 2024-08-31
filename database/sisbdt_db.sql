@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 24-08-2024 a las 15:23:22
+-- Tiempo de generación: 31-08-2024 a las 17:15:42
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -41,7 +41,7 @@ CREATE TABLE `configuracions` (
 --
 
 INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'SISBDT', 'SISBDT', '1724511946_1.svg', NULL, '2024-08-24 19:05:46');
+(1, 'SIS. SISBDT', 'SISBDT', '1725036371_1.png', NULL, '2024-08-30 20:46:11');
 
 -- --------------------------------------------------------
 
@@ -57,6 +57,13 @@ CREATE TABLE `datos_otros` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `datos_otros`
+--
+
+INSERT INTO `datos_otros` (`id`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 2, '2024-08-31', '2024-08-31 19:26:58', '2024-08-31 19:26:58');
+
 -- --------------------------------------------------------
 
 --
@@ -71,15 +78,22 @@ CREATE TABLE `datos_personals` (
   `fecha_nacimiento` date NOT NULL,
   `lugar_nacimiento` varchar(600) COLLATE utf8mb4_unicode_ci NOT NULL,
   `genero` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fono` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `dir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `hoja_vida` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hoja_vida` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `calificacion` double NOT NULL DEFAULT '0',
   `fecha_registro` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `datos_personals`
+--
+
+INSERT INTO `datos_personals` (`id`, `user_id`, `tipo_ci`, `nro_ci`, `fecha_nacimiento`, `lugar_nacimiento`, `genero`, `foto`, `fono`, `dir`, `hoja_vida`, `calificacion`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 2, 'CÉDULA DE IDENTIDAD', '5445454', '1999-01-01', 'LA PAZ', 'MASCULINO', '1725113569_1.jpg', '77776566', 'ZONA LOS PEDREGALES', '1725113569_1.pdf', 0, '2024-08-31', '2024-08-31 18:12:49', '2024-08-31 18:12:49');
 
 -- --------------------------------------------------------
 
@@ -214,6 +228,14 @@ CREATE TABLE `habilidads` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `habilidads`
+--
+
+INSERT INTO `habilidads` (`id`, `datos_otros_id`, `habilidad`, `created_at`, `updated_at`) VALUES
+(2, 1, 'TRABAJO BAJO PRESION', '2024-08-31 19:29:49', '2024-08-31 19:29:49'),
+(3, 1, 'RESOLUCION DE PROBLEMAS', '2024-08-31 19:34:09', '2024-08-31 19:34:09');
+
 -- --------------------------------------------------------
 
 --
@@ -228,6 +250,14 @@ CREATE TABLE `idiomas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `idiomas`
+--
+
+INSERT INTO `idiomas` (`id`, `datos_otros_id`, `idioma`, `nivel`, `created_at`, `updated_at`) VALUES
+(3, 1, 'FRANCES', 'MEDIO', '2024-08-31 19:29:20', '2024-08-31 19:29:20'),
+(4, 1, 'INGLES', 'AVANZADO', '2024-08-31 19:34:09', '2024-08-31 19:34:09');
 
 -- --------------------------------------------------------
 
@@ -295,7 +325,7 @@ CREATE TABLE `parametrizacions` (
 --
 
 INSERT INTO `parametrizacions` (`id`, `primaria`, `secundaria`, `bachiller`, `titulado`, `egresado`, `en_curso`, `tecnico_superior`, `tecnico_medio`, `disciplina_ingenieria`, `doctorado`, `maestria`, `especialidad`, `diplomado`, `c_carga_horaria`, `p_cada_mes`, `p_cada_reconocimiento`, `created_at`, `updated_at`) VALUES
-(1, 5, 6, 7, 3, 4, 2, 3, 4, 5, 6, 7, 8, 4, 3, 3, 3, '2024-08-24 03:12:56', '2024-08-24 03:23:42');
+(1, 6, 6, 7, 3, 4, 2, 3, 4, 5, 6, 7, 8, 4, 3, 3, 5, '2024-08-24 03:12:56', '2024-08-30 19:23:16');
 
 -- --------------------------------------------------------
 
@@ -315,6 +345,13 @@ CREATE TABLE `referencias` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `referencias`
+--
+
+INSERT INTO `referencias` (`id`, `datos_otros_id`, `nombre_ref`, `cel_ref`, `correo_ref`, `cargo_ref`, `relacion_ref`, `descripcion`, `created_at`, `updated_at`) VALUES
+(1, 1, 'JUAN BAUTISTA', '77777777', 'JUAN@GMAIL.COM', 'GERENTE', 'TRABAJO', 'DESC', '2024-08-31 19:33:07', '2024-08-31 19:33:07');
 
 -- --------------------------------------------------------
 
@@ -341,7 +378,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `password`, `email`, `tipo`, `foto`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin@admin.com', 'ADMINISTRADOR', NULL, '2024-08-23', NULL, NULL),
-(2, 'JUAN', 'PERES MAMANI', '$2y$12$H7Z1N6zoDI4hWvgPraCanO0ZT8VZ9CQS.v3mLKTyKpE/oLMRB.Ory', 'juan@gmail.com', 'POSTULANTE', NULL, '2024-08-23', '2024-08-24 00:34:47', '2024-08-24 00:34:47');
+(2, 'JUAN', 'PERES MAMANI', '$2y$12$/mlrOpJd2wIr7/L1EX9UxuF6FTMX.CN/jo0PZWSGXTS29oXhKFgpO', 'juan@gmail.com', 'POSTULANTE', '1725121911_2.jpg', '2024-08-23', '2024-08-24 00:34:47', '2024-08-31 20:31:51'),
+(3, 'PEDRO', 'MAMANI', '$2y$12$rp5ah1/cH1QKzFl1EWgINuQO6BOJpVZcHdhqJIHevLC4XbHzEAOUu', 'pedro@gmail.com', 'POSTULANTE', NULL, '2024-08-30', '2024-08-30 19:43:23', '2024-08-30 19:43:23');
 
 --
 -- Índices para tablas volcadas
@@ -470,13 +508,13 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `datos_otros`
 --
 ALTER TABLE `datos_otros`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_personals`
 --
 ALTER TABLE `datos_personals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacions`
@@ -524,13 +562,13 @@ ALTER TABLE `evaluacion_postgrados`
 -- AUTO_INCREMENT de la tabla `habilidads`
 --
 ALTER TABLE `habilidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `idiomas`
 --
 ALTER TABLE `idiomas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -548,13 +586,13 @@ ALTER TABLE `parametrizacions`
 -- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas

@@ -16,7 +16,7 @@
                     <!--begin::Wrapper-->
                     <div class="col-12 col-md-8 col-lg-6 p-10">
                         <!--begin::Form-->
-                        <form class="form w-100" novalidate="novalidate" method="post" action="{{route('login.store')}}">
+                        <form class="form w-100" novalidate="novalidate" method="post" action="{{ route('login.store') }}">
                             @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-11">
@@ -67,7 +67,7 @@
                             <!--end::Submit button-->
                             <!--begin::Register-->
                             <div class="d-grid mb-10">
-                                <a :href="route('register')" id="kt_sign_in_submit" class="btn btn-danger">
+                                <a href="{{ route('register') }}" id="kt_sign_in_submit" class="btn btn-danger">
                                     <!--begin::Indicator label-->
                                     <span class="indicator-label">Registrarme</span>
                                     <!--end::Indicator label-->
@@ -94,11 +94,11 @@
                     <!--end::Logo-->
                     <!--begin::Image-->
                     <!-- <img
-                                class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
-                                :src="url_assets +
-                                    '/assets/template/media/misc/auth-screens.png'"
-                                alt=""
-                            /> -->
+                                    class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
+                                    :src="url_assets +
+                                        '/assets/template/media/misc/auth-screens.png'"
+                                    alt=""
+                                /> -->
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">
@@ -107,22 +107,22 @@
                     <!--end::Title-->
                     <!--begin::Text-->
                     <!-- <div
-                                class="d-none d-lg-block text-white fs-base text-center"
-                            >
-                                In this kind of post,
-                                <a
-                                    href="#"
-                                    class="opacity-75-hover text-warning fw-bold me-1"
-                                    >the blogger</a
-                                >introduces a person they’ve interviewed <br />and
-                                provides some background information about
-                                <a
-                                    href="#"
-                                    class="opacity-75-hover text-warning fw-bold me-1"
-                                    >the interviewee</a
-                                >and their <br />work following this is a transcript of
-                                the interview.
-                            </div> -->
+                                    class="d-none d-lg-block text-white fs-base text-center"
+                                >
+                                    In this kind of post,
+                                    <a
+                                        href="#"
+                                        class="opacity-75-hover text-warning fw-bold me-1"
+                                        >the blogger</a
+                                    >introduces a person they’ve interviewed <br />and
+                                    provides some background information about
+                                    <a
+                                        href="#"
+                                        class="opacity-75-hover text-warning fw-bold me-1"
+                                        >the interviewee</a
+                                    >and their <br />work following this is a transcript of
+                                    the interview.
+                                </div> -->
                     <!--end::Text-->
                 </div>
                 <!--end::Content-->

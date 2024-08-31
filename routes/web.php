@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\DatosOtroController;
+use App\Http\Controllers\DatosPersonalController;
+use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ParametrizacionController;
 use App\Http\Controllers\PortalController;
@@ -28,6 +31,11 @@ Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, '
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
     Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio');
+
+    // perfil
+    Route::get('/perfil', [LoginController::class, 'perfil'])->name('perfil');
+    Route::post('/perfil_password', [LoginController::class, 'perfil_password'])->name('perfil_password');
+    Route::post('/perfil_foto', [LoginController::class, 'perfil_foto'])->name('perfil_foto');
 
     // CONFIGURACION
     Route::resource("configuracions", ConfiguracionController::class)->only(
@@ -58,9 +66,26 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     // PARAMETRIZACION
     // la funcion resource nos ayuda a definir las rutas que se usan normalmente para un CRUD(crear,modificar,mostrar,eliminar)
     // "only" nos permite indicar que funciones del CRUD usaremos
-    Route::resource("parametrizacions", ParametrizacionController::class)->only(
-        ["index", "store", "update", "show", "destroy"]
-    );
+    Route::resource("parametrizacions", ParametrizacionController::class);
+
+    // DATOS PERSONALES
+    Route::resource("datos_personals", DatosPersonalController::class)->only([
+        'index',
+        'store',
+    ]);
+
+    // OTROS DATOS
+    Route::resource("datos_otros", DatosOtroController::class)->only([
+        'index',
+        'store',
+    ]);
+
+    // EVALUACION
+    Route::resource("evaluacions", EvaluacionController::class)->only([
+        'index',
+        'store',
+    ]);
+
 
     // REPORTES
 });

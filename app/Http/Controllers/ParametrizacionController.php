@@ -15,7 +15,7 @@ class ParametrizacionController extends Controller
     public function index()
     {
         $parametrizacion = Parametrizacion::first();
-        return Inertia::render("Parametrizacion/Index", compact("parametrizacion"));
+        return view("Parametrizacion.index", compact("parametrizacion"));
     }
 
     /*
@@ -89,6 +89,6 @@ class ParametrizacionController extends Controller
             Parametrizacion::create($datos);
         }
 
-        return redirect()->route('parametrizacions.index');
+        return redirect()->route('parametrizacions.index')->with("success", "Registro actualizado");
     }
 }
