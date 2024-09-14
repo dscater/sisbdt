@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 31-08-2024 a las 17:15:42
+-- Tiempo de generación: 14-09-2024 a las 20:29:54
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -46,6 +46,27 @@ INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `logo`, `created_
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `cualidads`
+--
+
+CREATE TABLE `cualidads` (
+  `id` bigint UNSIGNED NOT NULL,
+  `datos_otros_id` bigint UNSIGNED NOT NULL,
+  `cualidad` varchar(600) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `cualidads`
+--
+
+INSERT INTO `cualidads` (`id`, `datos_otros_id`, `cualidad`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CUALIDAD #1', '2024-09-14 23:42:18', '2024-09-14 23:42:18');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `datos_otros`
 --
 
@@ -62,7 +83,8 @@ CREATE TABLE `datos_otros` (
 --
 
 INSERT INTO `datos_otros` (`id`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 2, '2024-08-31', '2024-08-31 19:26:58', '2024-08-31 19:26:58');
+(1, 2, '2024-08-31', '2024-08-31 19:26:58', '2024-08-31 19:26:58'),
+(2, 3, '2024-09-14', '2024-09-14 23:16:05', '2024-09-14 23:16:05');
 
 -- --------------------------------------------------------
 
@@ -105,9 +127,18 @@ CREATE TABLE `evaluacions` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
   `fecha_registro` date NOT NULL,
+  `puntuacion` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `evaluacions`
+--
+
+INSERT INTO `evaluacions` (`id`, `user_id`, `fecha_registro`, `puntuacion`, `created_at`, `updated_at`) VALUES
+(3, 2, '2024-09-14', 119, '2024-09-14 21:42:40', '2024-09-15 00:29:43'),
+(4, 3, '2024-09-14', 0, '2024-09-14 23:16:05', '2024-09-14 23:16:05');
 
 -- --------------------------------------------------------
 
@@ -124,6 +155,14 @@ CREATE TABLE `evaluacion_basicas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `evaluacion_basicas`
+--
+
+INSERT INTO `evaluacion_basicas` (`id`, `evaluacion_id`, `nivel`, `grado`, `institucion`, `created_at`, `updated_at`) VALUES
+(1, 3, 'SECUNDARIA', 'BACHILLER', 'COL. FRANCIAS', '2024-09-14 21:43:17', '2024-09-14 23:46:35'),
+(2, 4, 'SECUNDARIA', 'BACHILLER', 'COL. EDUARDO AVAROA', '2024-09-14 23:18:37', '2024-09-14 23:36:59');
 
 -- --------------------------------------------------------
 
@@ -145,6 +184,13 @@ CREATE TABLE `evaluacion_carreras` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `evaluacion_carreras`
+--
+
+INSERT INTO `evaluacion_carreras` (`id`, `evaluacion_id`, `titulo`, `carrera`, `institucion`, `nivel`, `fecha_titulo`, `estado`, `disciplina`, `created_at`, `updated_at`) VALUES
+(6, 3, 'LIC. EN ECONOMIA', 'INGENIERÍA CIVIL', 'INSTITUCION #2', 'LICENCIATURA', '2022-01-01', 'TITULADO', 'INGENIERIA', '2024-09-14 23:57:13', '2024-09-14 23:57:13');
+
 -- --------------------------------------------------------
 
 --
@@ -162,6 +208,14 @@ CREATE TABLE `evaluacion_cursos` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `evaluacion_cursos`
+--
+
+INSERT INTO `evaluacion_cursos` (`id`, `evaluacion_id`, `nombre`, `institucion`, `fecha`, `carga_horaria`, `created_at`, `updated_at`) VALUES
+(5, 3, 'CURSO #1', 'INSTITUCION CURSO', '2024-03-03', 20, '2024-09-14 23:57:13', '2024-09-15 00:29:16'),
+(6, 3, 'CURSO #2', 'INSTITUCION CURSO', '2024-06-06', 20, '2024-09-15 00:29:37', '2024-09-15 00:29:37');
+
 -- --------------------------------------------------------
 
 --
@@ -177,6 +231,13 @@ CREATE TABLE `evaluacion_distincions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `evaluacion_distincions`
+--
+
+INSERT INTO `evaluacion_distincions` (`id`, `evaluacion_id`, `merito`, `institucion`, `fecha`, `created_at`, `updated_at`) VALUES
+(5, 3, 'MERITO #1', 'INSTUTUCION #1', '2024-03-03', '2024-09-14 23:57:13', '2024-09-15 00:12:48');
 
 -- --------------------------------------------------------
 
@@ -196,6 +257,13 @@ CREATE TABLE `evaluacion_laborals` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `evaluacion_laborals`
+--
+
+INSERT INTO `evaluacion_laborals` (`id`, `evaluacion_id`, `cargo`, `institucion`, `fecha_ini`, `fecha_fin`, `descripcion`, `created_at`, `updated_at`) VALUES
+(5, 3, 'CARGO', 'EMPRESA', '2023-01-01', '2023-12-12', 'DESC.', '2024-09-14 23:57:13', '2024-09-15 00:12:48');
+
 -- --------------------------------------------------------
 
 --
@@ -213,6 +281,13 @@ CREATE TABLE `evaluacion_postgrados` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `evaluacion_postgrados`
+--
+
+INSERT INTO `evaluacion_postgrados` (`id`, `evaluacion_id`, `institucion`, `fecha_postgrado`, `titulo`, `nivel`, `postgrado`, `created_at`, `updated_at`) VALUES
+(6, 3, 'INSTITUCION POSTGRADO', '2024-02-02', 'TIT. POSTGRADO', 'NIVEL POST.', 'DOCTORADO', '2024-09-14 23:57:13', '2024-09-14 23:57:13');
 
 -- --------------------------------------------------------
 
@@ -256,8 +331,7 @@ CREATE TABLE `idiomas` (
 --
 
 INSERT INTO `idiomas` (`id`, `datos_otros_id`, `idioma`, `nivel`, `created_at`, `updated_at`) VALUES
-(3, 1, 'FRANCES', 'MEDIO', '2024-08-31 19:29:20', '2024-08-31 19:29:20'),
-(4, 1, 'INGLES', 'AVANZADO', '2024-08-31 19:34:09', '2024-08-31 19:34:09');
+(3, 1, 'INGLES', 'MEDIO', '2024-08-31 19:29:20', '2024-09-14 23:33:15');
 
 -- --------------------------------------------------------
 
@@ -290,7 +364,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2024_08_24_151302_create_evaluacion_distincions_table', 3),
 (13, '2024_08_24_151642_create_idiomas_table', 3),
 (14, '2024_08_24_151647_create_habilidads_table', 3),
-(15, '2024_08_24_151653_create_referencias_table', 3);
+(15, '2024_08_24_151653_create_referencias_table', 3),
+(16, '2024_09_14_163606_create_cualidads_table', 4);
 
 -- --------------------------------------------------------
 
@@ -390,6 +465,13 @@ INSERT INTO `users` (`id`, `nombres`, `apellidos`, `password`, `email`, `tipo`, 
 --
 ALTER TABLE `configuracions`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `cualidads`
+--
+ALTER TABLE `cualidads`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cualidads_datos_otros_id_foreign` (`datos_otros_id`);
 
 --
 -- Indices de la tabla `datos_otros`
@@ -505,10 +587,16 @@ ALTER TABLE `configuracions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `cualidads`
+--
+ALTER TABLE `cualidads`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `datos_otros`
 --
 ALTER TABLE `datos_otros`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_personals`
@@ -520,43 +608,43 @@ ALTER TABLE `datos_personals`
 -- AUTO_INCREMENT de la tabla `evaluacions`
 --
 ALTER TABLE `evaluacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_basicas`
 --
 ALTER TABLE `evaluacion_basicas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_carreras`
 --
 ALTER TABLE `evaluacion_carreras`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_cursos`
 --
 ALTER TABLE `evaluacion_cursos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_distincions`
 --
 ALTER TABLE `evaluacion_distincions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_laborals`
 --
 ALTER TABLE `evaluacion_laborals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_postgrados`
 --
 ALTER TABLE `evaluacion_postgrados`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `habilidads`
@@ -574,7 +662,7 @@ ALTER TABLE `idiomas`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `parametrizacions`
@@ -597,6 +685,12 @@ ALTER TABLE `users`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `cualidads`
+--
+ALTER TABLE `cualidads`
+  ADD CONSTRAINT `cualidads_datos_otros_id_foreign` FOREIGN KEY (`datos_otros_id`) REFERENCES `datos_otros` (`id`);
 
 --
 -- Filtros para la tabla `datos_otros`

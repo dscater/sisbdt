@@ -37,6 +37,11 @@ class DatosOtro extends Model
         return $this->hasMany(Habilidad::class, 'datos_otros_id');
     }
 
+    public function cualidads()
+    {
+        return $this->hasMany(Cualidad::class, 'datos_otros_id');
+    }
+
     public function referencias()
     {
         return $this->hasMany(Referencia::class, 'datos_otros_id');

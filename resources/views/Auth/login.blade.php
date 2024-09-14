@@ -35,8 +35,8 @@
                             <!--begin::Input group=-->
                             <div class="fv-row mb-8">
                                 <!--begin::Email-->
-                                <input type="text" placeholder="Correo electrónico" name="email" autocomplete="off"
-                                    class="form-control bg-transparent" />
+                                <input type="text" placeholder="Correo electrónico" name="email"
+                                    value="{{ old('email') }}" autocomplete="off" class="form-control bg-transparent" autofocus/>
                                 <!--end::Email-->
                             </div>
                             <!--end::Input group=-->
@@ -47,7 +47,7 @@
                                 <!--end::Password-->
                             </div>
                             <!--end::Input group=-->
-                            @if ($errors->has('name'))
+                            @if ($errors->has('email'))
                                 <div class="fv-row mb-3">
                                     <div class="alert alert-danger">
                                         <span class="text-red d-block">
@@ -94,11 +94,11 @@
                     <!--end::Logo-->
                     <!--begin::Image-->
                     <!-- <img
-                                    class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
-                                    :src="url_assets +
-                                        '/assets/template/media/misc/auth-screens.png'"
-                                    alt=""
-                                /> -->
+                                        class="d-none d-lg-block mx-auto w-275px w-md-50 w-xl-500px mb-10 mb-lg-20"
+                                        :src="url_assets +
+                                            '/assets/template/media/misc/auth-screens.png'"
+                                        alt=""
+                                    /> -->
                     <!--end::Image-->
                     <!--begin::Title-->
                     <h1 class="d-none d-lg-block text-white fs-2qx fw-bolder text-center mb-7">
@@ -107,22 +107,22 @@
                     <!--end::Title-->
                     <!--begin::Text-->
                     <!-- <div
-                                    class="d-none d-lg-block text-white fs-base text-center"
-                                >
-                                    In this kind of post,
-                                    <a
-                                        href="#"
-                                        class="opacity-75-hover text-warning fw-bold me-1"
-                                        >the blogger</a
-                                    >introduces a person they’ve interviewed <br />and
-                                    provides some background information about
-                                    <a
-                                        href="#"
-                                        class="opacity-75-hover text-warning fw-bold me-1"
-                                        >the interviewee</a
-                                    >and their <br />work following this is a transcript of
-                                    the interview.
-                                </div> -->
+                                        class="d-none d-lg-block text-white fs-base text-center"
+                                    >
+                                        In this kind of post,
+                                        <a
+                                            href="#"
+                                            class="opacity-75-hover text-warning fw-bold me-1"
+                                            >the blogger</a
+                                        >introduces a person they’ve interviewed <br />and
+                                        provides some background information about
+                                        <a
+                                            href="#"
+                                            class="opacity-75-hover text-warning fw-bold me-1"
+                                            >the interviewee</a
+                                        >and their <br />work following this is a transcript of
+                                        the interview.
+                                    </div> -->
                     <!--end::Text-->
                 </div>
                 <!--end::Content-->

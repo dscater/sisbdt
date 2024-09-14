@@ -3,6 +3,7 @@
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\DatosOtroController;
 use App\Http\Controllers\DatosPersonalController;
+use App\Http\Controllers\EvaluacionCarreraController;
 use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ParametrizacionController;
@@ -22,6 +23,9 @@ Route::get("/register", [LoginController::class, 'register'])->name("register");
 Route::post("/register", [LoginController::class, 'register_store'])->name("register.store");
 
 Route::get("configuracions/getConfiguracion", [ConfiguracionController::class, 'getConfiguracion'])->name("configuracions.getConfiguracion");
+
+
+Route::get("getCarreras", [EvaluacionCarreraController::class, 'getArrayCarreras']);
 
 /* Usamos las funciones middleware, prefix y group
     middleware: lo que se ejecuta antes de acceder a una ruta, en este caso "auth" para verificar si existe una sesión iniciada

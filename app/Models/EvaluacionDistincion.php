@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class EvaluacionDistincion extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "evaluacion_id",
+        "merito",
+        "institucion",
+        "fecha",
+    ];
+
+    public function evaluacion()
+    {
+        return $this->belongsTo(Evaluacion::class, 'evaluacion_id');
+    }
 }
