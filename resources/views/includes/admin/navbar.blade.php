@@ -70,6 +70,18 @@
                             </div>
                         @endif
                         <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        @if (in_array('usuarios.index', Auth::user()->permisos))
+                        <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                            <!--begin:Menu link-->
+                            <span class="menu-link">
+                                <a href="{{ route('postulantes') }}" class="menu-title">Postulantes</a>
+                                <span class="menu-arrow d-lg-none"></span>
+                            </span>
+                            <!--end:Menu link-->
+                        </div>
+                    @endif
+                    <!--end:Menu item-->
                     </div>
                     <!--end::Menu-->
                 </div>

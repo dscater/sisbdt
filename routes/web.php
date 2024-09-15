@@ -60,11 +60,15 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("usuarios/paginado", [UsuarioController::class, 'paginado'])->name("usuarios.paginado");
     Route::get("usuarios/listado", [UsuarioController::class, 'listado'])->name("usuarios.listado");
     Route::get("usuarios/listado/byTipo", [UsuarioController::class, 'byTipo'])->name("usuarios.byTipo");
-    Route::get("usuarios/show/{user}", [UsuarioController::class, 'show'])->name("usuarios.show");
     Route::put("usuarios/update/{user}", [UsuarioController::class, 'update'])->name("usuarios.update");
-    Route::delete("usuarios/{user}", [UsuarioController::class, 'destroy'])->name("usuarios.destroy");
+    Route::get("usuarios/pdf/{usuario}", [UsuarioController::class, 'pdf'])->name("usuarios.pdf");
     Route::resource("usuarios", UsuarioController::class)->only(
-        ["index", "store"]
+        [
+            "index",
+            "store",
+            'show',
+            'destroy'
+        ]
     );
 
     // PARAMETRIZACION
@@ -90,6 +94,14 @@ Route::middleware('auth')->prefix("admin")->group(function () {
         'store',
     ]);
 
+    // EVALUACION
+    Route::resource("evaluacions", EvaluacionController::class)->only([
+        'index',
+        'store',
+    ]);
+
+    // POSTULANTES
+    Route::get("postulantes", [UsuarioController::class, 'postulantes'])->name("postulantes");
 
     // REPORTES
 });

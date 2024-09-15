@@ -149,6 +149,12 @@
                 </div>
             </div>
         </div>
+        @if ($evaluacion && $datos_otro && Auth::user()->tipo == 'POSTULANTE')
+            <div class="col-md-4 mt-3 offset-md-8">
+                <a href="{{ route('usuarios.pdf', Auth::user()->id) }}" target="_blank"
+                    class="btn btn-primary btn-sm w-100 btn-block"><i class="fa fa-file-pdf"></i> Generar pdf</a>
+            </div>
+        @endif
     </div>
 
     @if ($evaluacion && $datos_otro)

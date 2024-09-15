@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 14-09-2024 a las 20:29:54
+-- Tiempo de generación: 15-09-2024 a las 15:35:36
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -41,7 +41,7 @@ CREATE TABLE `configuracions` (
 --
 
 INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'SIS. SISBDT', 'SISBDT', '1725036371_1.png', NULL, '2024-08-30 20:46:11');
+(1, 'SIS. SISBDT', 'SISBDT', '1726414529_1.svg', NULL, '2024-09-15 19:35:29');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ CREATE TABLE `evaluacions` (
 
 INSERT INTO `evaluacions` (`id`, `user_id`, `fecha_registro`, `puntuacion`, `created_at`, `updated_at`) VALUES
 (3, 2, '2024-09-14', 119, '2024-09-14 21:42:40', '2024-09-15 00:29:43'),
-(4, 3, '2024-09-14', 0, '2024-09-14 23:16:05', '2024-09-14 23:16:05');
+(4, 3, '2024-09-14', 12, '2024-09-14 23:16:05', '2024-09-15 19:33:37');
 
 -- --------------------------------------------------------
 

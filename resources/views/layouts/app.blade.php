@@ -12,6 +12,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     {{-- CSS --}}
     <link href="{{ asset('assets/template/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    
+    <link href="{{ asset('js/datatables.net-bs5/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet"/>
+    <link href="{{ asset('js/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}" rel="stylesheet"/>
     <link href="{{ asset('assets/template/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/config.css') }}" rel="stylesheet" type="text/css" />
     @yield('css')
@@ -65,6 +68,12 @@
     <script src="{{ asset('assets/template/plugins/custom/fslightbox/fslightbox.bundle.js') }}"></script>
     <script src="{{ asset('assets/template/plugins/custom/typedjs/typedjs.bundle.js') }}"></script>
     <!--end::Vendors Javascript-->
+    {{-- <script src="{{ asset('assets/template/plugins/custom/datatables/datatables.bundle.js') }}"></script> --}}
+    <script src="{{ asset('js/datatables.net/js/dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('js/datatable.js') }}"></script>
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{ asset('assets/template/js/custom/landing.js') }}"></script>
     <script>
