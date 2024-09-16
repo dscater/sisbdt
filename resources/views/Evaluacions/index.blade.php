@@ -41,7 +41,7 @@
     </style>
 @endsection
 @section('content')
-    <h3 class="text-center text-h4">EVALUACIÓN</h3>
+    <h3 class="text-center text-h4">REGISTRO</h3>
     <div class="row">
         <div class="col-12">
             <!-- SmartWizard html -->
@@ -291,7 +291,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Grado Escolaridad</label>
-                                        <input type="text" name="fb_grados[]" class="form-control">
+                                        <select name="fb_grados[]" class="form-select">
+                                            <option value="">- Seleccione -</option>
+                                            <option value="PRIMARIA">PRIMARIA</option>
+                                            <option value="SECUNDARIA">SECUNDARIA</option>
+                                            <option value="BACHILLER">BACHILLER</option>
+                                        </select>
                                         <div class="valid-feedback">
                                         </div>
                                         <div class="invalid-feedback">
@@ -956,7 +961,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Relación referencia*</label>
-                                <input type="text" name="ref_cargo_refs[]" class="form-control">
+                                <input type="text" name="ref_relacion_refs[]" class="form-control">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -1052,6 +1057,9 @@
                         },
                     })
                     $('#smartwizard').smartWizard("loader", "hide");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 700)
                 },
                 error: function(xhr, status, error) {
                     $('#smartwizard').smartWizard("loader", "hide");

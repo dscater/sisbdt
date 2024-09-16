@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Relación referencia*</label>
-                    <input type="text" name="ref_cargo_refs[]" value="{{ $item->cargo_ref }}" class="form-control">
+                    <input type="text" name="ref_relacion_refs[]" value="{{ $item->cargo_ref }}" class="form-control">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -105,7 +105,7 @@
             </div>
             <div class="col-md-4">
                 <label>Relación referencia*</label>
-                <input type="text" name="ref_cargo_refs[]" class="form-control">
+                <input type="text" name="ref_relacion_refs[]" class="form-control">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

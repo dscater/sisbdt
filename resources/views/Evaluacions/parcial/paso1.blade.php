@@ -20,9 +20,10 @@
                     <label>Grado Escolaridad*</label>
                     <select name="fb_grados[]" class="form-select">
                         <option value="">- Seleccione -</option>
-                        <option value="PRIMARIA" {{$item->grado == 'PRIMARIA'?'selected':''}}>PRIMARIA</option>
-                        <option value="SECUNDARIA" {{$item->grado == 'SECUNDARIA'?'selected':''}}>SECUNDARIA</option>
-                        <option value="BACHILLER" {{$item->grado == 'BACHILLER'?'selected':''}}>BACHILLER</option>
+                        <option value="PRIMARIA" {{ $item->grado == 'PRIMARIA' ? 'selected' : '' }}>PRIMARIA</option>
+                        <option value="SECUNDARIA" {{ $item->grado == 'SECUNDARIA' ? 'selected' : '' }}>SECUNDARIA
+                        </option>
+                        <option value="BACHILLER" {{ $item->grado == 'BACHILLER' ? 'selected' : '' }}>BACHILLER</option>
                     </select>
                     <div class="valid-feedback">
 
@@ -58,9 +59,13 @@
             </div>
             <div class="col-md-4">
                 <label>Grado Escolaridad*</label>
-                <input type="text" name="fb_grados[]" class="form-control">
+                <select name="fb_grados[]" class="form-select">
+                    <option value="">- Seleccione -</option>
+                    <option value="PRIMARIA">PRIMARIA</option>
+                    <option value="SECUNDARIA">SECUNDARIA</option>
+                    <option value="BACHILLER">BACHILLER</option>
+                </select>
                 <div class="valid-feedback">
-
                 </div>
                 <div class="invalid-feedback">
                     Completa este campo

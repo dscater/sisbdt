@@ -45,7 +45,7 @@
 
         .logo img {
             position: absolute;
-            height: 90px;
+            width: 130px;
             top: 0px;
             left: 0px;
         }

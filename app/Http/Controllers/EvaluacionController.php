@@ -533,7 +533,7 @@ class EvaluacionController extends Controller
         $ref_cel_refs = $request->ref_cel_refs;
         $ref_correo_refs = $request->ref_correo_refs;
         $ref_cargo_refs = $request->ref_cargo_refs;
-        $ref_cargo_refs = $request->ref_cargo_refs;
+        $ref_relacion_refs = $request->ref_relacion_refs;
         $ref_descripcions = $request->ref_descripcions;
         $ref_eliminados = $request->ref_eliminados;
 
@@ -552,7 +552,7 @@ class EvaluacionController extends Controller
                         "cel_ref" => mb_strtoupper($ref_cel_refs[$i]),
                         "correo_ref" => mb_strtoupper($ref_correo_refs[$i]),
                         "cargo_ref" => mb_strtoupper($ref_cargo_refs[$i]),
-                        "cargo_ref" => mb_strtoupper($ref_cargo_refs[$i]),
+                        "relacion_ref" => mb_strtoupper($ref_relacion_refs[$i]),
                         "descripcion" => mb_strtoupper($ref_descripcions[$i]),
                     ];
                     if ($ref_ids[$i] != 0) {

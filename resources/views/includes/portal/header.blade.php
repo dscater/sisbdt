@@ -84,7 +84,7 @@
                     </h1>
                     <!--end::Title-->
                     <!--begin::Action-->
-                    <a href="{{ route('register') }}" class="btn btn-lg btn-primary">Evaluate</a>
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-primary">Registrate</a>
                     <!--end::Action-->
                 </div>
                 <!--end::Heading-->
