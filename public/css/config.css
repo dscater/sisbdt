@@ -16,7 +16,9 @@ html {
     overflow-y: overlay;
 }
 
-
+.font-weight-bold{
+    font-weight: bold;
+}
 
 #kt_app_content{
 }

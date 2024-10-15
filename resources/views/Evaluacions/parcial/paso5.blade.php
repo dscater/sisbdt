@@ -1,3 +1,4 @@
+<div class="font-weight-bold mb-2">LLena el formulario con la información desde la más actual a la más antigua</div>
 <form id="form-5">
     @if ($evaluacion && count($evaluacion->evaluacion_laborals) > 0)
         @foreach ($evaluacion->evaluacion_laborals as $key => $item)

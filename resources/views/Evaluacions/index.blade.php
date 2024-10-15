@@ -282,7 +282,27 @@
                                     <button type="button" class="quitar">X</button>
                                     <div class="col-md-4">
                                         <label>Nivel Escolaridad</label>
-                                        <input type="text" name="fb_nivels[]" class="form-control">
+                                        <select name="fb_nivels[]" class="form-select">
+                                            <option value="">- Seleccione -</option>
+                                            <option value="PRIMERO">PRIMARIA</option>
+                                            <option value="SEGUNDO">SEGUNDO</option>
+                                            <option value="TERCERO">TERCERO</option>
+                                            <option value="CUARTO">CUARTO</option>
+                                            <option value="QUINTO">QUINTO</option>
+                                            <option value="SEXTO">SEXTO</option>
+                                            <option value="SÉPTIMO">SÉPTIMO</option>
+                                            <option value="OCTAVO">OCTAVO</option>
+                                            <option value="PRIMERO MEDIO">PRIMERO MEDIO</option>
+                                            <option value="SEGUNDO MEDIO">SEGUNDO MEDIO</option>
+                                            <option value="TERCERO MEDIO">TERCERO MEDIO</option>
+                                            <option value="CUARTO MEDIO">CUARTO MEDIO</option>
+                                            <option value="PRIMERO DE SECUNDARIA">PRIMERO DE SECUNDARIA</option>
+                                            <option value="SEGUNDO DE SECUNDARIA">SEGUNDO DE SECUNDARIA</option>
+                                            <option value="TERCERO DE SECUNDARIA">TERCERO DE SECUNDARIA</option>
+                                            <option value="CUARTO DE SECUNDARIA">CUARTO DE SECUNDARIA</option>
+                                            <option value="QUINTO DE SECUNDARIA">QUINTO DE SECUNDARIA</option>
+                                            <option value="SEXTO DE SECUNDARIA">SEXTO DE SECUNDARIA</option>
+                                        </select>
                                         <div class="valid-feedback">
                                         </div>
                                         <div class="invalid-feedback">
@@ -377,7 +397,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Nivel profesional*</label>
-                                    <input type="text" name="ec_nivels[]" class="form-control">
+                                    <select name="ec_nivels[]" class="form-select">
+                                        <option value="">- Seleccione -</option>
+                                        <option value="TÉCNICO MEDIO">TÉCNICO MEDIO</option>
+                                        <option value="TÉCNICO SUPERIOR">TÉCNICO SUPERIOR
+                                        </option>
+                                        <option value="LICENCIATURA">LICENCIATURA</option>
+                                    </select>
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -397,11 +423,9 @@
                                     <label>Estado*</label>
                                     <select name="ec_estados[]" class="form-select">
                                         <option value="">- Seleccione -</option>
-                                        <option value="TITULADO">TITULADO</option>
-                                        <option value="EGRESADO">EGRESADO</option>
                                         <option value="EN CURSO">EN CURSO</option>
-                                        <option value="TÉCNICO SUPERIOR">TÉCNICO SUPERIOR</option>
-                                        <option value="TÉCNICO MEDIO">TÉCNICO MEDIO</option>
+                                        <option value="EGRESADO">EGRESADO</option>
+                                        <option value="TITULADO">TITULADO</option>
                                     </select>
                                     <div class="valid-feedback">
                                     </div>
@@ -410,7 +434,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Disciplina*</label>
+                                    <label>Número de título*</label>
                                     <select name="ec_disciplinas[]" class="form-select">
                                         <option value="">- Seleccione -</option>
                                         <option value="INGENIERIA">INGENIERIA</option>
@@ -775,7 +799,10 @@
                     <input type="hidden" name="id_ids[]" value="0" />
                     <div class="col-md-6">
                         <label>Idioma*</label>
-                        <input type="text" name="id_idioma[]" class="form-control">
+                        <select name="id_idioma[]" class="form-select">
+                            <option value="">- Seleccione -</option>
+                            {!! $html_option_idiomas !!}
+                        </select>
                         <div class="valid-feedback">
                         </div>
                         <div class="invalid-feedback">
@@ -784,7 +811,28 @@
                     </div>
                     <div class="col-md-6">
                         <label>Nivel*</label>
+                        <select name="id_nivel[]" class="form-select">
+                            <option value="">- Seleccione -</option>
+                            <option value="BÁSICO">BÁSICO</option>
+                            <option value="MEDIO">MEDIO</option>
+                            <option value="AVANZADO">AVANZADO</option>
+                        </select>
                         <input type="text" name="id_nivel[]" class="form-control">
+                        <div class="valid-feedback">
+                        </div>
+                        <div class="invalid-feedback">
+                            Completa este campo
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Certificado*</label>
+                        <select name="id_certificado[]" class="form-select">
+                            <option value="">- Seleccione -</option>
+                            <option value="CON CERTIFICADO">CON
+                                CERTIFICADO</option>
+                            <option value="SIN CERTIFICADO">SIN
+                                CERTIFICADO</option>
+                        </select>
                         <div class="valid-feedback">
                         </div>
                         <div class="invalid-feedback">
@@ -831,7 +879,7 @@
                                 <input type="hidden" name="hab_ids[]" value="0" />
                                 <div class="col-md-12">
                                     <label>Habilidad/Conocimiento*</label>
-                                    <input type="text" name="hab_habilidads[]" class="form-control">
+                                    <textarea name="hab_habilidads[]" class="form-control"></textarea>
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -878,7 +926,7 @@
                     <input type="hidden" name="cua_ids[]" value="0" />
                     <div class="col-md-12">
                         <label>Cualidad*</label>
-                        <input type="text" name="cua_cualidads[]" class="form-control">
+                        <textarea name="cua_cualidads[]" class="form-control"></textarea>
                         <div class="valid-feedback">
                         </div>
                         <div class="invalid-feedback">
@@ -1063,16 +1111,40 @@
                 },
                 error: function(xhr, status, error) {
                     $('#smartwizard').smartWizard("loader", "hide");
-                    Swal.fire({
-                        text: "Algó salio mal. Intente nuevamente",
-                        icon: "error",
-                        buttonsStyling: !1,
-                        confirmButtonText: "Aceptar",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        },
-                    })
-                    console.log("Error:", status, error);
+                    if (xhr.status == 422) {
+                        // Captura los errores de validación
+                        if (xhr.responseJSON && xhr.responseJSON.errors) {
+                            console.log("Errores de validación:", xhr.responseJSON.errors);
+                            let errorMessage = "";
+                            for (const [key, messages] of Object.entries(xhr.responseJSON.errors)) {
+                                // errorMessage += `${key}: ${messages.join(", ")}\n`;
+                                errorMessage += `- ${messages.join(", ")}<br/>`;
+                            }
+                            // Muestra los errores usando SweetAlert
+                            Swal.fire({
+                                html: errorMessage,
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Aceptar",
+                                customClass: {
+                                    confirmButton: "btn btn-primary"
+                                },
+                            });
+                        }
+
+                    } else {
+                        Swal.fire({
+                            text: "Algó salio mal. Intente nuevamente",
+                            icon: "error",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Aceptar",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            },
+                        })
+                        console.log("Error:", status, error);
+                    }
+
                 }
 
             });

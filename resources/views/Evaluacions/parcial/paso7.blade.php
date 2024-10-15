@@ -1,3 +1,4 @@
+<div class="font-weight-bold mb-2">LLena el formulario con la información desde la más actual a la más antigua</div>
 <form id="form-7">
     @if ($datos_otro && count($datos_otro->idiomas) > 0)
         @foreach ($datos_otro->idiomas as $key => $item)
@@ -9,7 +10,14 @@
                 <input type="hidden" name="id_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-6">
                     <label>Idioma*</label>
-                    <input type="text" name="id_idioma[]" value="{{ $item->idioma }}" class="form-control">
+                    <select name="id_idioma[]" class="form-select">
+                        <option value="">- Seleccione -</option>
+                        @foreach ($lista_idiomas as $value)
+                            <option value="{{ $value->id }}" {{ $item->idioma == $value->id ? 'selected' : '' }}>
+                                {{ $value->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -18,7 +26,27 @@
                 </div>
                 <div class="col-md-6">
                     <label>Nivel*</label>
-                    <input type="text" name="id_nivel[]" value="{{ $item->nivel }}" class="form-control">
+                    <select name="id_nivel[]" class="form-select">
+                        <option value="">- Seleccione -</option>
+                        <option value="BÁSICO" {{ $item->nivel == 'BÁSICO' ? 'selected' : '' }}>BÁSICO</option>
+                        <option value="MEDIO" {{ $item->nivel == 'MEDIO' ? 'selected' : '' }}>MEDIO</option>
+                        <option value="AVANZADO" {{ $item->nivel == 'AVANZADO' ? 'selected' : '' }}>AVANZADO</option>
+                    </select>
+                    <div class="valid-feedback">
+                    </div>
+                    <div class="invalid-feedback">
+                        Completa este campo
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Certificado*</label>
+                    <select name="id_certificado[]" class="form-select">
+                        <option value="">- Seleccione -</option>
+                        <option value="CON CERTIFICADO" {{ $item->certificado == 'CON CERTIFICADO' ? 'selected' : '' }}>CON
+                            CERTIFICADO</option>
+                        <option value="SIN CERTIFICADO" {{ $item->certificado == 'SIN CERTIFICADO' ? 'selected' : '' }}>SIN
+                            CERTIFICADO</option>
+                    </select>
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -32,7 +60,10 @@
             <input type="hidden" name="id_ids[]" value="0" />
             <div class="col-md-6">
                 <label>Idioma*</label>
-                <input type="text" name="id_idioma[]" class="form-control">
+                <select name="id_idioma[]" class="form-select">
+                    <option value="">- Seleccione -</option>
+                    {!! $html_option_idiomas !!}
+                </select>
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -41,7 +72,27 @@
             </div>
             <div class="col-md-6">
                 <label>Nivel*</label>
-                <input type="text" name="id_nivel[]" class="form-control">
+                <select name="id_nivel[]" class="form-select">
+                    <option value="">- Seleccione -</option>
+                    <option value="BÁSICO">BÁSICO</option>
+                    <option value="MEDIO">MEDIO</option>
+                    <option value="AVANZADO">AVANZADO</option>
+                </select>
+                <div class="valid-feedback">
+                </div>
+                <div class="invalid-feedback">
+                    Completa este campo
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>Certificado*</label>
+                <select name="id_certificado[]" class="form-select">
+                    <option value="">- Seleccione -</option>
+                    <option value="CON CERTIFICADO">CON
+                        CERTIFICADO</option>
+                    <option value="SIN CERTIFICADO">SIN
+                        CERTIFICADO</option>
+                </select>
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

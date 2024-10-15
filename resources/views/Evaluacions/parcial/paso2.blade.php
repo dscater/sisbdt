@@ -1,3 +1,4 @@
+<div class="font-weight-bold mb-2">LLena el formulario con la información desde la más actual a la más antigua</div>
 <form id="form-2">
     @if ($evaluacion && count($evaluacion->evaluacion_carreras) > 0)
         @foreach ($evaluacion->evaluacion_carreras as $key => $item)
@@ -54,7 +55,13 @@
                 </div>
                 <div class="col-md-4">
                     <label>Nivel profesional*</label>
-                    <input type="text" name="ec_nivels[]" value="{{ $item->nivel }}" class="form-control">
+                    <select name="ec_nivels[]" class="form-select">
+                        <option value="">- Seleccione -</option>
+                        <option value="TÉCNICO MEDIO" {{ $item->nivel == 'TÉCNICO MEDIO' ? 'selected' : '' }}>TÉCNICO MEDIO</option>
+                        <option value="TÉCNICO SUPERIOR" {{ $item->nivel == 'TÉCNICO SUPERIOR' ? 'selected' : '' }}>TÉCNICO SUPERIOR
+                        </option>
+                        <option value="LICENCIATURA" {{ $item->nivel == 'LICENCIATURA' ? 'selected' : '' }}>LICENCIATURA</option>
+                    </select>
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -75,13 +82,9 @@
                     <label>Estado*</label>
                     <select name="ec_estados[]" class="form-select">
                         <option value="">- Seleccione -</option>
-                        <option value="TITULADO" {{ $item->estado == 'TITULADO' ? 'selected' : '' }}>TITULADO</option>
-                        <option value="EGRESADO" {{ $item->estado == 'EGRESADO' ? 'selected' : '' }}>EGRESADO</option>
                         <option value="EN CURSO" {{ $item->estado == 'EN CURSO' ? 'selected' : '' }}>EN CURSO</option>
-                        <option value="TÉCNICO SUPERIOR" {{ $item->estado == 'TÉCNICO SUPERIOR' ? 'selected' : '' }}>
-                            TÉCNICO SUPERIOR</option>
-                        <option value="TÉCNICO MEDIO" {{ $item->estado == 'TÉCNICO MEDIO' ? 'selected' : '' }}>TÉCNICO
-                            MEDIO</option>
+                        <option value="EGRESADO" {{ $item->estado == 'EGRESADO' ? 'selected' : '' }}>EGRESADO</option>
+                        <option value="TITULADO" {{ $item->estado == 'TITULADO' ? 'selected' : '' }}>TITULADO</option>
                     </select>
                     <div class="valid-feedback">
                     </div>
@@ -90,7 +93,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label>Disciplina*</label>
+                    <label>Número de título*</label>
                     <select name="ec_disciplinas[]" class="form-select">
                         <option value="">- Seleccione -</option>
                         <option value="INGENIERIA" {{ $item->disciplina == 'INGENIERIA' ? 'selected' : '' }}>INGENIERIA
@@ -140,7 +143,13 @@
             </div>
             <div class="col-md-4">
                 <label>Nivel profesional*</label>
-                <input type="text" name="ec_nivels[]" class="form-control">
+                <select name="ec_nivels[]" class="form-select">
+                    <option value="">- Seleccione -</option>
+                    <option value="TÉCNICO MEDIO">TÉCNICO MEDIO</option>
+                    <option value="TÉCNICO SUPERIOR">TÉCNICO SUPERIOR
+                    </option>
+                    <option value="LICENCIATURA">LICENCIATURA</option>
+                </select>
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -160,11 +169,9 @@
                 <label>Estado*</label>
                 <select name="ec_estados[]" class="form-select">
                     <option value="">- Seleccione -</option>
-                    <option value="TITULADO">TITULADO</option>
-                    <option value="EGRESADO">EGRESADO</option>
                     <option value="EN CURSO">EN CURSO</option>
-                    <option value="TÉCNICO SUPERIOR">TÉCNICO SUPERIOR</option>
-                    <option value="TÉCNICO MEDIO">TÉCNICO MEDIO</option>
+                    <option value="EGRESADO">EGRESADO</option>
+                    <option value="TITULADO">TITULADO</option>
                 </select>
                 <div class="valid-feedback">
                 </div>
@@ -173,7 +180,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label>Disciplina*</label>
+                <label>Número de título*</label>
                 <select name="ec_disciplinas[]" class="form-select">
                     <option value="">- Seleccione -</option>
                     <option value="INGENIERIA">INGENIERIA</option>
@@ -190,7 +197,7 @@
     <div class="row mt-3">
         <div class="col-12 text-center">
             <button type="button" class="btn btn-success mx-auto btn-sm btnAgregar"><i class="fa fa-plus"></i>
-                Agregar</button>
+                Agregar otra carrera</button>
         </div>
     </div>
 </form>

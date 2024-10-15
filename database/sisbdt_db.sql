@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 15-09-2024 a las 15:35:36
+-- Tiempo de generación: 15-10-2024 a las 16:20:05
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -62,7 +62,8 @@ CREATE TABLE `cualidads` (
 --
 
 INSERT INTO `cualidads` (`id`, `datos_otros_id`, `cualidad`, `created_at`, `updated_at`) VALUES
-(1, 1, 'CUALIDAD #1', '2024-09-14 23:42:18', '2024-09-14 23:42:18');
+(1, 1, 'CUALIDAD #1', '2024-09-14 23:42:18', '2024-09-14 23:42:18'),
+(4, 6, 'CUALIDAD #1', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,9 @@ CREATE TABLE `datos_otros` (
 
 INSERT INTO `datos_otros` (`id`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 2, '2024-08-31', '2024-08-31 19:26:58', '2024-08-31 19:26:58'),
-(2, 3, '2024-09-14', '2024-09-14 23:16:05', '2024-09-14 23:16:05');
+(2, 3, '2024-09-14', '2024-09-14 23:16:05', '2024-09-14 23:16:05'),
+(3, 4, '2024-09-16', '2024-09-16 20:47:16', '2024-09-16 20:47:16'),
+(6, 5, '2024-09-16', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -137,8 +140,10 @@ CREATE TABLE `evaluacions` (
 --
 
 INSERT INTO `evaluacions` (`id`, `user_id`, `fecha_registro`, `puntuacion`, `created_at`, `updated_at`) VALUES
-(3, 2, '2024-09-14', 119, '2024-09-14 21:42:40', '2024-09-15 00:29:43'),
-(4, 3, '2024-09-14', 12, '2024-09-14 23:16:05', '2024-09-15 19:33:37');
+(3, 2, '2024-09-14', 184, '2024-09-14 21:42:40', '2024-10-15 20:13:32'),
+(4, 3, '2024-09-14', 12, '2024-09-14 23:16:05', '2024-09-15 19:33:37'),
+(5, 4, '2024-09-16', 20, '2024-09-16 20:47:16', '2024-09-16 20:47:16'),
+(8, 5, '2024-09-16', 94, '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -161,8 +166,10 @@ CREATE TABLE `evaluacion_basicas` (
 --
 
 INSERT INTO `evaluacion_basicas` (`id`, `evaluacion_id`, `nivel`, `grado`, `institucion`, `created_at`, `updated_at`) VALUES
-(1, 3, 'SECUNDARIA', 'BACHILLER', 'COL. FRANCIAS', '2024-09-14 21:43:17', '2024-09-14 23:46:35'),
-(2, 4, 'SECUNDARIA', 'BACHILLER', 'COL. EDUARDO AVAROA', '2024-09-14 23:18:37', '2024-09-14 23:36:59');
+(1, 3, 'SEXTO DE SECUNDARIA', 'BACHILLER', 'COL. FRANCIAS', '2024-09-14 21:43:17', '2024-10-15 18:00:18'),
+(2, 4, 'SECUNDARIA', 'BACHILLER', 'COL. EDUARDO AVAROA', '2024-09-14 23:18:37', '2024-09-14 23:36:59'),
+(3, 5, '6', 'BACHILLER', 'COLEGIO', '2024-09-16 20:47:16', '2024-09-16 20:47:16'),
+(6, 8, '6', 'BACHILLER', 'COLEGIO', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -189,7 +196,10 @@ CREATE TABLE `evaluacion_carreras` (
 --
 
 INSERT INTO `evaluacion_carreras` (`id`, `evaluacion_id`, `titulo`, `carrera`, `institucion`, `nivel`, `fecha_titulo`, `estado`, `disciplina`, `created_at`, `updated_at`) VALUES
-(6, 3, 'LIC. EN ECONOMIA', 'INGENIERÍA CIVIL', 'INSTITUCION #2', 'LICENCIATURA', '2022-01-01', 'TITULADO', 'INGENIERIA', '2024-09-14 23:57:13', '2024-09-14 23:57:13');
+(6, 3, 'LIC. EN ECONOMIA', 'INGENIERÍA CIVIL', 'INSTITUCION #2', 'TÉCNICO SUPERIOR', '2022-01-01', 'EGRESADO', 'INGENIERIA', '2024-09-14 23:57:13', '2024-10-15 20:13:32'),
+(7, 5, 'LIC. EN DERECHO', 'INGENIERÍA CIVIL', 'INSTITUCION #2', 'NIVEL PROF', '2024-09-16', 'TITULADO', 'INGENIERIA', '2024-09-16 20:47:16', '2024-09-16 20:47:16'),
+(10, 8, 'LIC. EN ECONOMIA', 'INGENIERÍA ELECTRÓNICA', 'INSTITUCION #2', 'NIVEL PROF', '2023-12-05', 'TITULADO', 'LICENCIATURA', '2024-09-16 20:54:36', '2024-09-16 20:54:36'),
+(18, 3, 'LIC. EN COMERCIO', 'COMERCIO EXTERIOR', 'INSTITUCION', 'LICENCIATURA', '2024-01-01', 'TITULADO', 'LICENCIATURA', '2024-10-15 18:14:45', '2024-10-15 18:14:45');
 
 -- --------------------------------------------------------
 
@@ -214,7 +224,8 @@ CREATE TABLE `evaluacion_cursos` (
 
 INSERT INTO `evaluacion_cursos` (`id`, `evaluacion_id`, `nombre`, `institucion`, `fecha`, `carga_horaria`, `created_at`, `updated_at`) VALUES
 (5, 3, 'CURSO #1', 'INSTITUCION CURSO', '2024-03-03', 20, '2024-09-14 23:57:13', '2024-09-15 00:29:16'),
-(6, 3, 'CURSO #2', 'INSTITUCION CURSO', '2024-06-06', 20, '2024-09-15 00:29:37', '2024-09-15 00:29:37');
+(6, 3, 'CURSO #2', 'INSTITUCION CURSO', '2024-06-06', 20, '2024-09-15 00:29:37', '2024-09-15 00:29:37'),
+(9, 8, 'CURSO #1', 'INSTITUCION CURSO', '2024-05-01', 10, '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -237,7 +248,8 @@ CREATE TABLE `evaluacion_distincions` (
 --
 
 INSERT INTO `evaluacion_distincions` (`id`, `evaluacion_id`, `merito`, `institucion`, `fecha`, `created_at`, `updated_at`) VALUES
-(5, 3, 'MERITO #1', 'INSTUTUCION #1', '2024-03-03', '2024-09-14 23:57:13', '2024-09-15 00:12:48');
+(5, 3, 'MERITO', 'INSTUTUCION #1', '2024-03-03', '2024-09-14 23:57:13', '2024-10-15 20:13:32'),
+(8, 8, 'MERITO #1', 'INSTUTUCION #1', '2023-12-01', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -262,7 +274,8 @@ CREATE TABLE `evaluacion_laborals` (
 --
 
 INSERT INTO `evaluacion_laborals` (`id`, `evaluacion_id`, `cargo`, `institucion`, `fecha_ini`, `fecha_fin`, `descripcion`, `created_at`, `updated_at`) VALUES
-(5, 3, 'CARGO', 'EMPRESA', '2023-01-01', '2023-12-12', 'DESC.', '2024-09-14 23:57:13', '2024-09-15 00:12:48');
+(5, 3, 'CARGO', 'EMPRESA', '2023-01-01', '2023-12-12', 'DESC.', '2024-09-14 23:57:13', '2024-09-15 00:12:48'),
+(8, 8, 'CARGO EXP. LAB.', 'EMPRESA #1', '2023-05-30', '2024-09-01', 'DESC. CARGO', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -287,7 +300,8 @@ CREATE TABLE `evaluacion_postgrados` (
 --
 
 INSERT INTO `evaluacion_postgrados` (`id`, `evaluacion_id`, `institucion`, `fecha_postgrado`, `titulo`, `nivel`, `postgrado`, `created_at`, `updated_at`) VALUES
-(6, 3, 'INSTITUCION POSTGRADO', '2024-02-02', 'TIT. POSTGRADO', 'NIVEL POST.', 'DOCTORADO', '2024-09-14 23:57:13', '2024-09-14 23:57:13');
+(6, 3, 'INSTITUCION POSTGRADO', '2024-02-02', 'TIT. POSTGRADO', 'NIVEL POST.', 'MAESTRÍA', '2024-09-14 23:57:13', '2024-10-15 20:13:32'),
+(9, 8, 'INSTITUCION POSTGRADO', '2024-02-03', 'TIT. POSTGRADO', 'NIVEL POST.', 'DIPLOMADO', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -309,7 +323,8 @@ CREATE TABLE `habilidads` (
 
 INSERT INTO `habilidads` (`id`, `datos_otros_id`, `habilidad`, `created_at`, `updated_at`) VALUES
 (2, 1, 'TRABAJO BAJO PRESION', '2024-08-31 19:29:49', '2024-08-31 19:29:49'),
-(3, 1, 'RESOLUCION DE PROBLEMAS', '2024-08-31 19:34:09', '2024-08-31 19:34:09');
+(3, 1, 'RESOLUCION DE PROBLEMAS', '2024-08-31 19:34:09', '2024-08-31 19:34:09'),
+(6, 6, 'HABILIDAD #1', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -320,8 +335,9 @@ INSERT INTO `habilidads` (`id`, `datos_otros_id`, `habilidad`, `created_at`, `up
 CREATE TABLE `idiomas` (
   `id` bigint UNSIGNED NOT NULL,
   `datos_otros_id` bigint UNSIGNED NOT NULL,
-  `idioma` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `idioma` bigint UNSIGNED NOT NULL,
   `nivel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `certificado` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -330,8 +346,33 @@ CREATE TABLE `idiomas` (
 -- Volcado de datos para la tabla `idiomas`
 --
 
-INSERT INTO `idiomas` (`id`, `datos_otros_id`, `idioma`, `nivel`, `created_at`, `updated_at`) VALUES
-(3, 1, 'INGLES', 'MEDIO', '2024-08-31 19:29:20', '2024-09-14 23:33:15');
+INSERT INTO `idiomas` (`id`, `datos_otros_id`, `idioma`, `nivel`, `certificado`, `created_at`, `updated_at`) VALUES
+(3, 1, 3, 'MEDIO', 'CON CERTIFICADO', '2024-08-31 19:29:20', '2024-10-15 18:30:52'),
+(7, 6, 1, 'AVANZADO', '', '2024-09-16 20:54:36', '2024-09-16 20:54:36'),
+(8, 1, 1, 'MEDIO', 'SIN CERTIFICADO', '2024-10-15 18:24:30', '2024-10-15 18:32:18');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `lista_idiomas`
+--
+
+CREATE TABLE `lista_idiomas` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `lista_idiomas`
+--
+
+INSERT INTO `lista_idiomas` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
+(1, 'INGLES', NULL, NULL),
+(2, 'QUECHUA', NULL, NULL),
+(3, 'AYMARA', NULL, NULL),
+(4, 'GUARANI', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,7 +406,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2024_08_24_151642_create_idiomas_table', 3),
 (14, '2024_08_24_151647_create_habilidads_table', 3),
 (15, '2024_08_24_151653_create_referencias_table', 3),
-(16, '2024_09_14_163606_create_cualidads_table', 4);
+(16, '2024_09_14_163606_create_cualidads_table', 4),
+(17, '2024_10_15_141607_create_lista_idiomas_table', 5);
 
 -- --------------------------------------------------------
 
@@ -426,7 +468,8 @@ CREATE TABLE `referencias` (
 --
 
 INSERT INTO `referencias` (`id`, `datos_otros_id`, `nombre_ref`, `cel_ref`, `correo_ref`, `cargo_ref`, `relacion_ref`, `descripcion`, `created_at`, `updated_at`) VALUES
-(1, 1, 'JUAN BAUTISTA', '77777777', 'JUAN@GMAIL.COM', 'GERENTE', 'TRABAJO', 'DESC', '2024-08-31 19:33:07', '2024-08-31 19:33:07');
+(1, 1, 'JUAN BAUTISTA', '77777777', 'JUAN@GMAIL.COM', 'GERENTE', 'GERENTE', 'DESC', '2024-08-31 19:33:07', '2024-10-15 20:13:48'),
+(2, 6, 'JORGE PAREDES', '7777777', 'JORGE@GMAIL.COM', 'CARGO REF.', 'RELACION REF.', 'DESC. REF', '2024-09-16 20:54:36', '2024-09-16 20:54:36');
 
 -- --------------------------------------------------------
 
@@ -454,7 +497,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `nombres`, `apellidos`, `password`, `email`, `tipo`, `foto`, `fecha_registro`, `created_at`, `updated_at`) VALUES
 (1, 'admin', 'admin', '$2y$12$65d4fgZsvBV5Lc/AxNKh4eoUdbGyaczQ4sSco20feSQANshNLuxSC', 'admin@admin.com', 'ADMINISTRADOR', NULL, '2024-08-23', NULL, NULL),
 (2, 'JUAN', 'PERES MAMANI', '$2y$12$/mlrOpJd2wIr7/L1EX9UxuF6FTMX.CN/jo0PZWSGXTS29oXhKFgpO', 'juan@gmail.com', 'POSTULANTE', '1725121911_2.jpg', '2024-08-23', '2024-08-24 00:34:47', '2024-08-31 20:31:51'),
-(3, 'PEDRO', 'MAMANI', '$2y$12$rp5ah1/cH1QKzFl1EWgINuQO6BOJpVZcHdhqJIHevLC4XbHzEAOUu', 'pedro@gmail.com', 'POSTULANTE', NULL, '2024-08-30', '2024-08-30 19:43:23', '2024-08-30 19:43:23');
+(3, 'PEDRO', 'MAMANI', '$2y$12$rp5ah1/cH1QKzFl1EWgINuQO6BOJpVZcHdhqJIHevLC4XbHzEAOUu', 'pedro@gmail.com', 'POSTULANTE', NULL, '2024-08-30', '2024-08-30 19:43:23', '2024-08-30 19:43:23'),
+(4, 'EDUARDO', 'GONZALES', '$2y$12$daON8WieVTEoE8YCfjYQPONVtDmFoIbatyWKLx0CROLHmUr4MtIcy', 'eduardo@gmail.com', 'POSTULANTE', NULL, '2024-09-16', '2024-09-16 20:41:01', '2024-09-16 20:41:01'),
+(5, 'ALFONSO', 'RODRIGUEZ', '$2y$12$tsm1ZKkFhx45BLHJS38PkOgRfpkc5OKVjbINXWtwrDb7BZXTV3Y7u', 'alfonso@gmail.com', 'POSTULANTE', NULL, '2024-09-16', '2024-09-16 20:47:49', '2024-09-16 20:47:49');
 
 --
 -- Índices para tablas volcadas
@@ -551,6 +596,12 @@ ALTER TABLE `idiomas`
   ADD KEY `idiomas_datos_otros_id_foreign` (`datos_otros_id`);
 
 --
+-- Indices de la tabla `lista_idiomas`
+--
+ALTER TABLE `lista_idiomas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `migrations`
 --
 ALTER TABLE `migrations`
@@ -590,13 +641,13 @@ ALTER TABLE `configuracions`
 -- AUTO_INCREMENT de la tabla `cualidads`
 --
 ALTER TABLE `cualidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_otros`
 --
 ALTER TABLE `datos_otros`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_personals`
@@ -608,61 +659,67 @@ ALTER TABLE `datos_personals`
 -- AUTO_INCREMENT de la tabla `evaluacions`
 --
 ALTER TABLE `evaluacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_basicas`
 --
 ALTER TABLE `evaluacion_basicas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_carreras`
 --
 ALTER TABLE `evaluacion_carreras`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_cursos`
 --
 ALTER TABLE `evaluacion_cursos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_distincions`
 --
 ALTER TABLE `evaluacion_distincions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_laborals`
 --
 ALTER TABLE `evaluacion_laborals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_postgrados`
 --
 ALTER TABLE `evaluacion_postgrados`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `habilidads`
 --
 ALTER TABLE `habilidads`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `idiomas`
 --
 ALTER TABLE `idiomas`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `lista_idiomas`
+--
+ALTER TABLE `lista_idiomas`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `parametrizacions`
@@ -674,13 +731,13 @@ ALTER TABLE `parametrizacions`
 -- AUTO_INCREMENT de la tabla `referencias`
 --
 ALTER TABLE `referencias`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

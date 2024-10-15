@@ -13,5 +13,11 @@ class Idioma extends Model
         "datos_otros_id",
         "idioma",
         "nivel",
+        "certificado",
     ];
+
+    public function l_idioma()
+    {
+        return $this->belongsTo(ListaIdioma::class, 'idioma');
+    }
 }

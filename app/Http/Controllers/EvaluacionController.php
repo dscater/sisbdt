@@ -13,6 +13,7 @@ use App\Models\EvaluacionLaboral;
 use App\Models\EvaluacionPostgrado;
 use App\Models\Habilidad;
 use App\Models\Idioma;
+use App\Models\ListaIdioma;
 use App\Models\Parametrizacion;
 use App\Models\Referencia;
 use DateTime;
@@ -20,6 +21,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class EvaluacionController extends Controller
 {
@@ -32,6 +35,12 @@ class EvaluacionController extends Controller
         $evaluacion = Evaluacion::where("user_id", Auth::user()->id)->get()->first();
         $datos_otro = DatosOtro::where("user_id", Auth::user()->id)->get()->first();
         $array_carreras = EvaluacionCarrera::getCarreras();
+        $lista_idiomas = ListaIdioma::all();
+        $html_option_idiomas = "";
+        foreach ($lista_idiomas as $value) {
+            $html_option_idiomas .= '<option value="' . $value->id . '">' . $value->nombre . '</option>';
+        }
+
         $html_option_carreras = "";
         foreach ($array_carreras as $carrera) {
             if ($carrera["grupo"] == "si") {
@@ -45,7 +54,7 @@ class EvaluacionController extends Controller
             }
         }
         // return $array_carreras;
-        return view("Evaluacions.index", compact('evaluacion', 'datos_otro', 'array_carreras', 'html_option_carreras'));
+        return view("Evaluacions.index", compact('evaluacion', 'datos_otro', 'array_carreras', 'html_option_carreras', 'html_option_idiomas', 'lista_idiomas'));
     }
 
     public function store(Request $request)
@@ -94,8 +103,16 @@ class EvaluacionController extends Controller
             return response()->JSON([
                 "message" => "Registro realizado correctamente"
             ]);
+        } catch (ValidationException $e) {
+            DB::rollBack();
+
+            // Obtener los errores de validación
+            $errores = $e->validator->errors();
+
+            return response()->json([
+                'errors' => $errores,
+            ], 422); // Devuelve un código de estado 422 para errores de validación
         } catch (\Exception $e) {
-            Log::debug($e->getMessage());
             DB::rollBack();
 
             return response()->JSON([
@@ -121,13 +138,39 @@ class EvaluacionController extends Controller
 
         if ($fb_ids && count($fb_ids) > 0) {
             for ($i = 0; $i < count($fb_ids); $i++) {
-                if ($fb_nivels[$i] && $fb_grados[$i] && $fb_institucions[$i]) {
+                $datos = [];
+                if ($fb_nivels[$i] || $fb_grados[$i] || $fb_institucions[$i]) {
                     $datos = [
                         "nivel" => mb_strtoupper($fb_nivels[$i]),
                         "grado" => mb_strtoupper($fb_grados[$i]),
                         "institucion" => mb_strtoupper($fb_institucions[$i]),
                     ];
+                    $reglas = [
+                        'nivel' => 'required',
+                        'grado' => 'required',
+                        'institucion' => 'required',
+                    ];
+                    $messages = [
+                        "nivel.required" => "El campo Nivel es obligatorio (Paso 1)",
+                        "grado.required" => "El campo Grado es obligatorio (Paso 1)",
+                        "institucion.required" => "El campo Institución es obligatorio (Paso 1)",
+                    ];
 
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+
+                if ($fb_nivels[$i] && $fb_grados[$i] && $fb_institucions[$i]) {
                     // sumar puntuacion
                     if ($parametrizacion) {
                         switch ($datos["grado"]) {
@@ -178,7 +221,8 @@ class EvaluacionController extends Controller
 
         if ($ec_ids) {
             for ($i = 0; $i < count($ec_ids); $i++) {
-                if ($ec_titulos[$i] && $ec_carreras[$i] && $ec_institucions[$i] && $ec_nivels[$i] && $ec_fecha_titulos[$i] && $ec_estados[$i] && $ec_disciplinas[$i]) {
+                $datos = [];
+                if ($ec_titulos[$i] || $ec_carreras[$i] || $ec_institucions[$i] || $ec_nivels[$i] || $ec_fecha_titulos[$i] || $ec_estados[$i] || $ec_disciplinas[$i]) {
                     $datos = [
                         "titulo" => mb_strtoupper($ec_titulos[$i]),
                         "carrera" => mb_strtoupper($ec_carreras[$i]),
@@ -188,7 +232,40 @@ class EvaluacionController extends Controller
                         "estado" => mb_strtoupper($ec_estados[$i]),
                         "disciplina" => mb_strtoupper($ec_disciplinas[$i]),
                     ];
+                    $reglas = [
+                        "titulo" => "required",
+                        "carrera" => "required",
+                        "institucion" => "required",
+                        "nivel" => "required",
+                        "fecha_titulo" => "required",
+                        "estado" => "required",
+                        "disciplina" => "required",
+                    ];
+                    $messages = [
+                        "titulo.required" => "El campo Título es obligatorio (Paso 2)",
+                        "carrera.required" => "El campo Carrera es obligatorio (Paso 2)",
+                        "institucion.required" => "El campo Institución es obligatorio (Paso 2)",
+                        "nivel.required" => "El campo Nivel es obligatorio (Paso 2)",
+                        "fecha_titulo.required" => "El campo Fecha de Título es obligatorio (Paso 2)",
+                        "estado.required" => "El campo Estado es obligatorio (Paso 2)",
+                        "disciplina.required" => "El campo Número de título es obligatorio (Paso 2)",
+                    ];
 
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+
+                if ($ec_titulos[$i] && $ec_carreras[$i] && $ec_institucions[$i] && $ec_nivels[$i] && $ec_fecha_titulos[$i] && $ec_estados[$i] && $ec_disciplinas[$i]) {
                     // sumar puntuacion
                     if ($parametrizacion) {
                         switch ($datos["estado"]) {
@@ -228,7 +305,7 @@ class EvaluacionController extends Controller
 
     public static function regPas3($request, Evaluacion $evaluacion, $parametrizacion, &$total_evaluacion)
     {
-        $fp_ids = $request->ec_ids;
+        $fp_ids = $request->fp_ids;
         $fp_institucions = $request->fp_institucions;
         $fp_fecha_postgrados = $request->fp_fecha_postgrados;
         $fp_titulos = $request->fp_titulos;
@@ -245,7 +322,9 @@ class EvaluacionController extends Controller
 
         if ($fp_ids) {
             for ($i = 0; $i < count($fp_ids); $i++) {
-                if ($fp_institucions[$i] && $fp_fecha_postgrados[$i] && $fp_titulos[$i] && $fp_nivels[$i] && $fp_postgrados[$i]) {
+
+                $datos = [];
+                if ($fp_institucions[$i] || $fp_fecha_postgrados[$i] || $fp_titulos[$i] || $fp_nivels[$i] || $fp_postgrados[$i]) {
                     $datos = [
                         "institucion" => mb_strtoupper($fp_institucions[$i]),
                         "fecha_postgrado" => mb_strtoupper($fp_fecha_postgrados[$i]),
@@ -253,7 +332,36 @@ class EvaluacionController extends Controller
                         "nivel" => mb_strtoupper($fp_nivels[$i]),
                         "postgrado" => mb_strtoupper($fp_postgrados[$i]),
                     ];
+                    $reglas = [
+                        "institucion" => "required",
+                        "fecha_postgrado" => "required",
+                        "titulo" => "required",
+                        "nivel" => "required",
+                        "postgrado" => "required",
+                    ];
+                    $messages = [
+                        "institucion.required" => "El campo Institución es obligatorio (Paso 3)",
+                        "fecha_postgrado.required" => "El campo Fecha de postgrado es obligatorio (Paso 3)",
+                        "titulo.required" => "El campo Título es obligatorio (Paso 3)",
+                        "nivel.required" => "El campo Nivel es obligatorio (Paso 3)",
+                        "postgrado.required" => "El campo Postgrado es obligatorio (Paso 3)",
+                    ];
 
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+
+                if ($fp_institucions[$i] && $fp_fecha_postgrados[$i] && $fp_titulos[$i] && $fp_nivels[$i] && $fp_postgrados[$i]) {
                     // sumar puntuacion
                     if ($parametrizacion) {
                         switch ($datos["postgrado"]) {
@@ -303,14 +411,42 @@ class EvaluacionController extends Controller
 
         if ($ecur_ids) {
             for ($i = 0; $i < count($ecur_ids); $i++) {
-                if ($ecur_nombres[$i] && $ecur_institucions[$i] && $ecur_fechas[$i] && $ecur_carga_horarias[$i]) {
+                $datos = [];
+                if ($ecur_nombres[$i] || $ecur_institucions[$i] || $ecur_fechas[$i] || $ecur_carga_horarias[$i]) {
                     $datos = [
                         "nombre" => mb_strtoupper($ecur_nombres[$i]),
                         "institucion" => mb_strtoupper($ecur_institucions[$i]),
                         "fecha" => mb_strtoupper($ecur_fechas[$i]),
                         "carga_horaria" => mb_strtoupper($ecur_carga_horarias[$i]),
                     ];
+                    $reglas = [
+                        "nombre" => "required",
+                        "institucion" => "required",
+                        "fecha" => "required",
+                        "carga_horaria" => "required",
+                    ];
+                    $messages = [
+                        "nombre.required" => "El campo Nombre Curso es obligatorio (Paso 4)",
+                        "institucion.required" => "El campo Institución es obligatorio (Paso 4)",
+                        "fecha.required" => "El campo Fecha es obligatorio (Paso 4)",
+                        "carga_horaria.required" => "El campo Carga horaria es obligatorio (Paso 4)",
+                    ];
 
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+
+                if ($ecur_nombres[$i] && $ecur_institucions[$i] && $ecur_fechas[$i] && $ecur_carga_horarias[$i]) {
                     // sumar puntuacion
                     if ($parametrizacion) {
                         if ((float)$datos["carga_horaria"] > 0 && $parametrizacion->c_carga_horaria > 0) {
@@ -320,8 +456,6 @@ class EvaluacionController extends Controller
                     // fin suma puntuacion
 
                     if ($ecur_ids[$i] != 0) {
-                        Log::debug($ecur_ids[$i]);
-                        Log::debug("AAAAAAAAAAAAAA");
                         $ecur = EvaluacionCurso::find($ecur_ids[$i]);
                         $ecur->update($datos);
                     } else {
@@ -352,7 +486,8 @@ class EvaluacionController extends Controller
 
         if ($el_ids) {
             for ($i = 0; $i < count($el_ids); $i++) {
-                if ($el_cargos[$i] && $el_institucions[$i] && $el_fecha_inis[$i] && $el_fecha_fins[$i] && $el_descripcions[$i]) {
+                $datos = [];
+                if ($el_cargos[$i] || $el_institucions[$i] || $el_fecha_inis[$i] || $el_fecha_fins[$i] || $el_descripcions[$i]) {
                     $datos = [
                         "cargo" => mb_strtoupper($el_cargos[$i]),
                         "institucion" => mb_strtoupper($el_institucions[$i]),
@@ -360,7 +495,35 @@ class EvaluacionController extends Controller
                         "fecha_fin" => $el_fecha_fins[$i],
                         "descripcion" => mb_strtoupper($el_descripcions[$i]),
                     ];
+                    $reglas = [
+                        "cargo" => "required",
+                        "institucion" => "required",
+                        "fecha_ini" => "required",
+                        "fecha_fin" => "required",
+                        "descripcion" => "required",
+                    ];
+                    $messages = [
+                        "cargo.required" => "El campo Cargo es obligatorio (Paso 5)",
+                        "institucion.required" => "El campo Institución/Empresa es obligatorio (Paso 5)",
+                        "fecha_ini.required" => "El campo Fecha Inicio es obligatorio (Paso 5)",
+                        "fecha_fin.required" => "El campo Fecha Final es obligatorio (Paso 5)",
+                        "descripcion.required" => "El campo Descripción del cargo es obligatorio (Paso 5)",
+                    ];
 
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+                if ($el_cargos[$i] && $el_institucions[$i] && $el_fecha_inis[$i] && $el_fecha_fins[$i] && $el_descripcions[$i]) {
                     // sumar puntuacion
                     if ($parametrizacion) {
                         $diff_meses = self::obtenerDiferenciaMeses($datos["fecha_ini"], $datos["fecha_fin"]);
@@ -400,15 +563,42 @@ class EvaluacionController extends Controller
         if ($ed_ids) {
             $contador = 0;
             for ($i = 0; $i < count($ed_ids); $i++) {
+                $datos = [];
                 if (
-                    $ed_meritos[$i] && $ed_institucions[$i] && $ed_fechas[$i]
+                    $ed_meritos[$i] || $ed_institucions[$i] || $ed_fechas[$i]
                 ) {
                     $datos = [
                         "merito" => mb_strtoupper($ed_meritos[$i]),
                         "institucion" => mb_strtoupper($ed_institucions[$i]),
                         "fecha" => $ed_fechas[$i],
                     ];
+                    $reglas = [
+                        "merito" => "required",
+                        "institucion" => "required",
+                        "fecha" => "required",
+                    ];
+                    $messages = [
+                        "merito.required" => "El campo Mérito es obligatorio (Paso 6)",
+                        "institucion.required" => "El campo Institución es obligatorio (Paso 6)",
+                        "fecha.required" => "El campo Fecha es obligatorio (Paso 6)",
+                    ];
 
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+                if (
+                    $ed_meritos[$i] && $ed_institucions[$i] && $ed_fechas[$i]
+                ) {
                     if ($ed_ids[$i] != 0) {
                         $el = EvaluacionDistincion::find($ed_ids[$i]);
                         $el->update($datos);
@@ -437,6 +627,7 @@ class EvaluacionController extends Controller
         $id_ids = $request->id_ids;
         $id_idioma = $request->id_idioma;
         $id_nivel = $request->id_nivel;
+        $id_certificado = $request->id_certificado;
         $id_eliminados = $request->id_eliminados;
 
         if ($id_eliminados && count($id_eliminados)) {
@@ -448,11 +639,38 @@ class EvaluacionController extends Controller
 
         if ($id_ids) {
             for ($i = 0; $i < count($id_ids); $i++) {
-                if ($id_idioma[$i] && $id_nivel[$i]) {
+                $datos = [];
+                if ($id_idioma[$i] || $id_nivel[$i] || $id_certificado[$i]) {
                     $datos = [
-                        "idioma" => mb_strtoupper($id_idioma[$i]),
+                        "idioma" => $id_idioma[$i],
                         "nivel" => mb_strtoupper($id_nivel[$i]),
+                        "certificado" => mb_strtoupper($id_certificado[$i]),
                     ];
+                    $reglas = [
+                        "idioma" => "required",
+                        "nivel" => "required",
+                        "certificado" => "required",
+                    ];
+                    $messages = [
+                        "idioma.required" => "El campo Idioma es obligatorio (Paso 7)",
+                        "nivel.required" => "El campo Nivel es obligatorio (Paso 7)",
+                        "certificado.required" => "El campo Certificado es obligatorio (Paso 7)",
+                    ];
+
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+                if ($id_idioma[$i] && $id_nivel[$i] && $id_certificado[$i]) {
 
                     if ($id_ids[$i] != 0) {
                         $id = Idioma::find($id_ids[$i]);
@@ -480,10 +698,32 @@ class EvaluacionController extends Controller
 
         if ($hab_ids) {
             for ($i = 0; $i < count($hab_ids); $i++) {
+                $datos = [];
                 if ($hab_habilidads[$i]) {
                     $datos = [
                         "habilidad" => mb_strtoupper($hab_habilidads[$i]),
                     ];
+                    $reglas = [
+                        "habilidad" => "required",
+                    ];
+                    $messages = [
+                        "habilidad.required" => "El campo Habilidad/Conocimiento es obligatorio (Paso 8)",
+                    ];
+
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+                if ($hab_habilidads[$i]) {
                     if ($hab_ids[$i] != 0) {
                         $hab = Habilidad::find($hab_ids[$i]);
                         $hab->update($datos);
@@ -510,10 +750,32 @@ class EvaluacionController extends Controller
 
         if ($cua_ids) {
             for ($i = 0; $i < count($cua_ids); $i++) {
+                $datos = [];
                 if ($cua_cualidads[$i]) {
                     $datos = [
                         "cualidad" => mb_strtoupper($cua_cualidads[$i]),
                     ];
+                    $reglas = [
+                        "cualidad" => "required",
+                    ];
+                    $messages = [
+                        "cualidad.required" => "El campo Cualidad es obligatorio (Paso 9)",
+                    ];
+
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+                if ($cua_cualidads[$i]) {
                     if ($cua_ids[$i] != 0) {
                         $cua = Cualidad::find($cua_ids[$i]);
                         $cua->update($datos);
@@ -546,7 +808,8 @@ class EvaluacionController extends Controller
 
         if ($ref_ids) {
             for ($i = 0; $i < count($ref_ids); $i++) {
-                if ($ref_nombre_refs[$i] && $ref_cel_refs[$i] && $ref_correo_refs[$i] && $ref_cargo_refs[$i] && $ref_cargo_refs[$i] && $ref_descripcions[$i]) {
+                $datos = [];
+                if ($ref_nombre_refs[$i] || $ref_cel_refs[$i] || $ref_correo_refs[$i] || $ref_cargo_refs[$i] || $ref_cargo_refs[$i] || $ref_descripcions[$i]) {
                     $datos = [
                         "nombre_ref" => mb_strtoupper($ref_nombre_refs[$i]),
                         "cel_ref" => mb_strtoupper($ref_cel_refs[$i]),
@@ -555,6 +818,39 @@ class EvaluacionController extends Controller
                         "relacion_ref" => mb_strtoupper($ref_relacion_refs[$i]),
                         "descripcion" => mb_strtoupper($ref_descripcions[$i]),
                     ];
+                    $reglas = [
+                        "nombre_ref" => "required",
+                        "cel_ref" => "required|regex:/^\d{10}$/",
+                        "correo_ref" => "required|email",
+                        "cargo_ref" => "required",
+                        "relacion_ref" => "required",
+                        "descripcion" => "required",
+                    ];
+                    $messages = [
+                        "nombre_ref.required" => "El campo Nombre referencia es obligatorio (Paso 10)",
+                        "cel_ref.required" => "El campo Celular referencia es obligatorio (Paso 10)",
+                        "cel_ref.regex" => "El campo Celular referencia no es valido (debe ser un valor número de 1-10 digitos) (Paso 10)",
+                        "correo_ref.required" => "El campo Correo referencia es obligatorio (Paso 10)",
+                        "correo_ref.email" => "El campo Correo referencia debe ser un correo valido (Paso 10)",
+                        "cargo_ref.required" => "El campo Cargo referencia es obligatorio (Paso 10)",
+                        "relacion_ref.required" => "El campo Relación referencia es obligatorio (Paso 10)",
+                        "descripcion.required" => "El campo Descripción es obligatorio (Paso 10)",
+                    ];
+
+                    // Crear el validador
+                    $validator = Validator::make($datos, $reglas, $messages);
+
+                    // Verificar si hay errores de validación
+                    if ($validator->fails()) {
+                        // Obtener los errores de validación
+                        $errores = $validator->errors();
+                        // Lanzar una excepción de validación con los errores como objeto
+                        throw new ValidationException($validator, response()->json([
+                            'errors' => $errores
+                        ], 422));
+                    }
+                }
+                if ($ref_nombre_refs[$i] && $ref_cel_refs[$i] && $ref_correo_refs[$i] && $ref_cargo_refs[$i] && $ref_cargo_refs[$i] && $ref_descripcions[$i]) {
                     if ($ref_ids[$i] != 0) {
                         $ref = Referencia::find($ref_ids[$i]);
                         $ref->update($datos);

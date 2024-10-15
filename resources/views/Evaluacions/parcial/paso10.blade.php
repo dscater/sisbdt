@@ -1,3 +1,4 @@
+<div class="font-weight-bold mb-2">LLena el formulario con la información desde la más actual a la más antigua</div>
 <form id="form-10">
     @if ($datos_otro && count($datos_otro->referencias) > 0)
         @foreach ($datos_otro->referencias as $key => $item)
@@ -123,7 +124,7 @@
             </div>
         </div>
     @endif
-    <div class="row mt-3">
+    <div class="row mt-3 mb-3">
         <div class="col-12 text-center">
             <button type="button" class="btn btn-success mx-auto btn-sm btnAgregar"><i class="fa fa-plus"></i>
                 Agregar</button>
