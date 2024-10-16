@@ -10,7 +10,7 @@
                 <input type="hidden" name="ed_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-4">
                     <label>Mérito*</label>
-                    <input type="text" name="ed_meritos[]" value="{{ $item->merito }}" class="form-control">
+                    <input type="text" name="ed_meritos[]" value="{{ $item->merito }}" class="form-control"placeholder="Mérito">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -20,7 +20,7 @@
                 <div class="col-md-4">
                     <label>Institución*</label>
                     <input type="text" name="ed_institucions[]" value="{{ $item->institucion }}"
-                        class="form-control">
+                        class="form-control"placeholder="Institución">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -43,7 +43,7 @@
             <input type="hidden" name="ed_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Mérito*</label>
-                <input type="text" name="ed_meritos[]" class="form-control">
+                <input type="text" name="ed_meritos[]" class="form-control"placeholder="Mérito">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-4">
                 <label>Institución*</label>
-                <input type="text" name="ed_institucions[]" class="form-control">
+                <input type="text" name="ed_institucions[]" class="form-control"placeholder="Institución">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

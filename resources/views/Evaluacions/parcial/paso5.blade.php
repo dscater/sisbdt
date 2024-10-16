@@ -10,7 +10,7 @@
                 <input type="hidden" name="el_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-4">
                     <label>Cargo*</label>
-                    <input type="text" name="el_cargos[]" value={{ $item->cargo }} class="form-control">
+                    <input type="text" name="el_cargos[]" value={{ $item->cargo }} class="form-control"placeholder="Cargo">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Institución/Empresa*</label>
-                    <input type="text" name="el_institucions[]" value={{ $item->institucion }} class="form-control">
+                    <input type="text" name="el_institucions[]" value={{ $item->institucion }} class="form-control"placeholder="Institución/Empresa">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Descripción del cargo*</label>
-                    <input type="text" name="el_descripcions[]" value={{ $item->descripcion }} class="form-control">
+                    <input type="text" name="el_descripcions[]" value={{ $item->descripcion }} class="form-control"placeholder="Descripción del cargo">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -60,7 +60,7 @@
             <input type="hidden" name="el_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Cargo*</label>
-                <input type="text" name="el_cargos[]" class="form-control">
+                <input type="text" name="el_cargos[]" class="form-control"placeholder="Cargo">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -69,7 +69,7 @@
             </div>
             <div class="col-md-4">
                 <label>Institución/Empresa*</label>
-                <input type="text" name="el_institucions[]" class="form-control">
+                <input type="text" name="el_institucions[]" class="form-control"placeholder="Institución/Empresa">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -96,7 +96,7 @@
             </div>
             <div class="col-md-4">
                 <label>Descripción del cargo*</label>
-                <input type="text" name="el_descripcions[]" class="form-control">
+                <input type="text" name="el_descripcions[]" class="form-control"placeholder="Descripción del cargo">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

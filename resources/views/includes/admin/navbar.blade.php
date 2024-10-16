@@ -72,16 +72,26 @@
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
                         @if (in_array('usuarios.index', Auth::user()->permisos))
-                        <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                            <!--begin:Menu link-->
-                            <span class="menu-link">
-                                <a href="{{ route('postulantes') }}" class="menu-title">Postulantes</a>
-                                <span class="menu-arrow d-lg-none"></span>
-                            </span>
-                            <!--end:Menu link-->
-                        </div>
-                    @endif
-                    <!--end:Menu item-->
+                            <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <!--begin:Menu link-->
+                                <span class="menu-link">
+                                    <a href="{{ route('postulantes') }}" class="menu-title">Postulantes</a>
+                                    <span class="menu-arrow d-lg-none"></span>
+                                </span>
+                                <!--end:Menu link-->
+                            </div>
+                        @endif
+                        <!--end:Menu item-->
+                        @if (Auth::user()->tipo == 'POSTULANTE')
+                            <div class="menu-item here show menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                                <!--begin:Menu link-->
+                                <span class="menu-link">
+                                    <a href="{{ route('evaluacions.index') }}" class="menu-title">Registrate</a>
+                                    <span class="menu-arrow d-lg-none"></span>
+                                </span>
+                                <!--end:Menu link-->
+                            </div>
+                        @endif
                     </div>
                     <!--end::Menu-->
                 </div>
@@ -112,8 +122,10 @@
                                         <div class="fw-bold d-flex align-items-center fs-5">
                                             {{ Auth::user()->full_name }}
                                         </div>
-                                        <div class="fw-semibold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</div>
-                                        <div class="w-100"><span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ Auth::user()->tipo }}</span>
+                                        <div class="fw-semibold text-muted text-hover-primary fs-7">
+                                            {{ Auth::user()->email }}</div>
+                                        <div class="w-100"><span
+                                                class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{ Auth::user()->tipo }}</span>
                                         </div>
 
                                     </div>

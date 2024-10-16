@@ -10,7 +10,7 @@
                 <input type="hidden" name="cua_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-12">
                     <label>Cualidad*</label>
-                    <textarea name="cua_cualidads[]" class="form-control">{{ $item->cualidad }}</textarea>
+                    <textarea name="cua_cualidads[]" class="form-control"placeholder="Cualidad">{{ $item->cualidad }}</textarea>
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -24,7 +24,7 @@
             <input type="hidden" name="cua_ids[]" value="0" />
             <div class="col-md-12">
                 <label>Cualidad*</label>
-                <textarea name="cua_cualidads[]" class="form-control"></textarea>
+                <textarea name="cua_cualidads[]" class="form-control"placeholder="Cualidad"></textarea>
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

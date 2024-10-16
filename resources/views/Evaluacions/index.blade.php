@@ -150,7 +150,11 @@
             </div>
         </div>
         @if ($evaluacion && $datos_otro && Auth::user()->tipo == 'POSTULANTE')
-            <div class="col-md-4 mt-3 offset-md-8">
+            <div class="col-md-4 mt-3 offset-md-4">
+                <a href="{{ route('usuarios.show', Auth::user()->id) }}"class="btn btn-outline btn-sm w-100 btn-block"><i
+                        class="fa fa-eye"></i> Ver</a>
+            </div>
+            <div class="col-md-4 mt-3">
                 <a href="{{ route('usuarios.pdf', Auth::user()->id) }}" target="_blank"
                     class="btn btn-primary btn-sm w-100 btn-block"><i class="fa fa-file-pdf"></i> Generar pdf</a>
             </div>
@@ -325,7 +329,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Institución</label>
-                                        <input type="text" name="fb_institucions[]" class="form-control">
+                                        <input type="text" name="fb_institucions[]" class="form-control" placeholder="Institución">
                                         <div class="valid-feedback">
                                         </div>
                                         <div class="invalid-feedback">
@@ -368,7 +372,7 @@
                                     <button type="button" class="quitar">X</button>
                                 <div class="col-md-4">
                                     <label>Título profesional*</label>
-                                    <input type="text" name="ec_titulos[]" class="form-control">
+                                    <input type="text" name="ec_titulos[]" class="form-control"placeholder="Título profesional">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -388,7 +392,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Institución*</label>
-                                    <input type="text" name="ec_institucions[]" class="form-control">
+                                    <input type="text" name="ec_institucions[]" class="form-control"placeholder="Institución">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -486,7 +490,7 @@
                                 <button type="button" class="quitar">X</button>
                                 <div class="col-md-4">
                                     <label>Institución*</label>
-                                    <input type="text" name="fp_institucions[]" class="form-control">
+                                    <input type="text" name="fp_institucions[]" class="form-control"placeholder="Institución">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -506,7 +510,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Título postgrado*</label>
-                                    <input type="text" name="fp_titulos[]" class="form-control">
+                                    <input type="text" name="fp_titulos[]" class="form-control"placeholder="Título postgrado">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -515,7 +519,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Nivel académico*</label>
-                                    <input type="text" name="fp_nivels[]" class="form-control">
+                                    <input type="text" name="fp_nivels[]" class="form-control"placeholder="Nivel académico">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -577,7 +581,7 @@
                         <input type="hidden" name="ecur_ids[]" value="0" />
                         <div class="col-md-4">
                             <label>Nombre Curso*</label>
-                            <input type="text" name="ecur_nombres[]" class="form-control">
+                            <input type="text" name="ecur_nombres[]" class="form-control"placeholder="Nombre Curso">
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
@@ -586,7 +590,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>Institución*</label>
-                            <input type="text" name="ecur_institucions[]" class="form-control">
+                            <input type="text" name="ecur_institucions[]" class="form-control"placeholder="Institución">
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
@@ -604,7 +608,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>Carga Horaria(Horas)*</label>
-                            <input type="number" step="1" name="ecur_carga_horarias[]" class="form-control">
+                            <input type="number" step="1" name="ecur_carga_horarias[]" class="form-control"placeholder="Carga Horaria(Horas)">
                             <div class="valid-feedback">
                             </div>
                             <div class="invalid-feedback">
@@ -651,7 +655,7 @@
                                 <input type="hidden" name="el_ids[]" value="0" />
                                 <div class="col-md-4">
                                     <label>Cargo*</label>
-                                    <input type="text" name="el_cargos[]" class="form-control">
+                                    <input type="text" name="el_cargos[]" class="form-control"placeholder="Cargo">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -660,7 +664,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Institución/Empresa*</label>
-                                    <input type="text" name="el_institucions[]" class="form-control">
+                                    <input type="text" name="el_institucions[]" class="form-control"placeholder="Institución/Empresa">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -687,7 +691,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Descripción del cargo*</label>
-                                    <input type="text" name="el_descripcions[]" class="form-control">
+                                    <input type="text" name="el_descripcions[]" class="form-control"placeholder="Descripción del cargo">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -734,7 +738,7 @@
                                 <input type="hidden" name="ed_ids[]" value="0" />
                                 <div class="col-md-4">
                                     <label>Mérito*</label>
-                                    <input type="text" name="ed_meritos[]" class="form-control">
+                                    <input type="text" name="ed_meritos[]" class="form-control"placeholder="Mérito">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -743,7 +747,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Institución*</label>
-                                    <input type="text" name="ed_institucions[]" class="form-control">
+                                    <input type="text" name="ed_institucions[]" class="form-control"placeholder="Institución">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -879,7 +883,7 @@
                                 <input type="hidden" name="hab_ids[]" value="0" />
                                 <div class="col-md-12">
                                     <label>Habilidad/Conocimiento*</label>
-                                    <textarea name="hab_habilidads[]" class="form-control"></textarea>
+                                    <textarea name="hab_habilidads[]" class="form-control" placeholder="Habilidad/Conocimiento"></textarea>
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -926,7 +930,7 @@
                     <input type="hidden" name="cua_ids[]" value="0" />
                     <div class="col-md-12">
                         <label>Cualidad*</label>
-                        <textarea name="cua_cualidads[]" class="form-control"></textarea>
+                        <textarea name="cua_cualidads[]" class="form-control"placeholder="Cualidad"></textarea>
                         <div class="valid-feedback">
                         </div>
                         <div class="invalid-feedback">
@@ -973,7 +977,7 @@
                             <input type="hidden" name="ref_ids[]" value="0" />
                             <div class="col-md-4">
                                 <label>Nombre referencia*</label>
-                                <input type="text" name="ref_nombre_refs[]" class="form-control">
+                                <input type="text" name="ref_nombre_refs[]" class="form-control" placeholder="Nombre referencia">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -982,7 +986,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Celular referencia*</label>
-                                <input type="text" name="ref_cel_refs[]" class="form-control">
+                                <input type="text" name="ref_cel_refs[]" class="form-control" placeholder="Celular referencia">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -991,7 +995,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Correo referencia*</label>
-                                <input type="email" name="ref_correo_refs[]" class="form-control">
+                                <input type="email" name="ref_correo_refs[]" class="form-control" placeholder="Correo referencia">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -1000,7 +1004,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Cargo referencia*</label>
-                                <input type="text" name="ref_cargo_refs[]" class="form-control">
+                                <input type="text" name="ref_cargo_refs[]" class="form-control" placeholder="Cargo referencia">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -1009,7 +1013,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Relación referencia*</label>
-                                <input type="text" name="ref_relacion_refs[]" class="form-control">
+                                <input type="text" name="ref_relacion_refs[]" class="form-control" placeholder="Relación referencia">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -1018,7 +1022,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Descripción*</label>
-                                <input type="text" name="ref_descripcions[]" class="form-control">
+                                <input type="text" name="ref_descripcions[]" class="form-control" placeholder="Descripción">
                                 <div class="valid-feedback">
                                 </div>
                                 <div class="invalid-feedback">
@@ -1106,7 +1110,8 @@
                     })
                     $('#smartwizard').smartWizard("loader", "hide");
                     setTimeout(() => {
-                        window.location.reload();
+                        // window.location.reload();
+                        window.location.href = "{{ route('usuarios.show', Auth::user()->id) }}";
                     }, 700)
                 },
                 error: function(xhr, status, error) {

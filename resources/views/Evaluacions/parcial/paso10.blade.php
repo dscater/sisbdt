@@ -10,7 +10,7 @@
                 <input type="hidden" name="ref_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-4">
                     <label>Nombre referencia*</label>
-                    <input type="text" name="ref_nombre_refs[]" value="{{ $item->nombre_ref }}" class="form-control">
+                    <input type="text" name="ref_nombre_refs[]" value="{{ $item->nombre_ref }}" class="form-control"placeholder="Nombre referencia">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Celular referencia*</label>
-                    <input type="text" name="ref_cel_refs[]" value="{{ $item->cel_ref }}" class="form-control">
+                    <input type="text" name="ref_cel_refs[]" value="{{ $item->cel_ref }}" class="form-control"placeholder="Celular referencia">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Correo referencia*</label>
-                    <input type="email" name="ref_correo_refs[]" value="{{ $item->correo_ref }}" class="form-control">
+                    <input type="email" name="ref_correo_refs[]" value="{{ $item->correo_ref }}" class="form-control"placeholder="Correo referencia">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Cargo referencia*</label>
-                    <input type="text" name="ref_cargo_refs[]" value="{{ $item->cargo_ref }}" class="form-control">
+                    <input type="text" name="ref_cargo_refs[]" value="{{ $item->cargo_ref }}" class="form-control"placeholder="Cargo referencia">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Relación referencia*</label>
-                    <input type="text" name="ref_relacion_refs[]" value="{{ $item->cargo_ref }}" class="form-control">
+                    <input type="text" name="ref_relacion_refs[]" value="{{ $item->cargo_ref }}" class="form-control"placeholder="Relación referencia">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -56,7 +56,7 @@
                 <div class="col-md-4">
                     <label>Descripción*</label>
                     <input type="text" name="ref_descripcions[]" value="{{ $item->descripcion }}"
-                        class="form-control">
+                        class="form-control"placeholder="Descripción">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -70,7 +70,7 @@
             <input type="hidden" name="ref_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Nombre referencia*</label>
-                <input type="text" name="ref_nombre_refs[]" class="form-control">
+                <input type="text" name="ref_nombre_refs[]" class="form-control"placeholder="Nombre referencia">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-4">
                 <label>Celular referencia*</label>
-                <input type="text" name="ref_cel_refs[]" class="form-control">
+                <input type="text" name="ref_cel_refs[]" class="form-control"placeholder="Celular referencia">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-4">
                 <label>Correo referencia*</label>
-                <input type="email" name="ref_correo_refs[]" class="form-control">
+                <input type="email" name="ref_correo_refs[]" class="form-control"placeholder="Correo referencia">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -97,7 +97,7 @@
             </div>
             <div class="col-md-4">
                 <label>Cargo referencia*</label>
-                <input type="text" name="ref_cargo_refs[]" class="form-control">
+                <input type="text" name="ref_cargo_refs[]" class="form-control"placeholder="Cargo referencia">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -106,7 +106,7 @@
             </div>
             <div class="col-md-4">
                 <label>Relación referencia*</label>
-                <input type="text" name="ref_relacion_refs[]" class="form-control">
+                <input type="text" name="ref_relacion_refs[]" class="form-control"placeholder="Relación referencia">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -115,7 +115,7 @@
             </div>
             <div class="col-md-4">
                 <label>Descripción*</label>
-                <input type="text" name="ref_descripcions[]" class="form-control">
+                <input type="text" name="ref_descripcions[]" class="form-control"placeholder="Descripción">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

@@ -10,7 +10,7 @@
                 <input type="hidden" name="ecur_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-4">
                     <label>Nombre Curso*</label>
-                    <input type="text" name="ecur_nombres[]" value="{{$item->nombre}}" class="form-control">
+                    <input type="text" name="ecur_nombres[]" value="{{$item->nombre}}" class="form-control"placeholder="Nombre Curso">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Institución*</label>
-                    <input type="text" name="ecur_institucions[]" value="{{$item->institucion}}" class="form-control">
+                    <input type="text" name="ecur_institucions[]" value="{{$item->institucion}}" class="form-control"placeholder="Institución">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Carga Horaria(Horas)*</label>
-                    <input type="number" step="1" name="ecur_carga_horarias[]" value="{{$item->carga_horaria}}" class="form-control">
+                    <input type="number" step="1" name="ecur_carga_horarias[]" value="{{$item->carga_horaria}}" class="form-control"placeholder="Carga Horaria(Horas)">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -51,7 +51,7 @@
             <input type="hidden" name="ecur_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Nombre Curso*</label>
-                <input type="text" name="ecur_nombres[]" class="form-control">
+                <input type="text" name="ecur_nombres[]" class="form-control"placeholder="Nombre Curso">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -60,7 +60,7 @@
             </div>
             <div class="col-md-4">
                 <label>Institución*</label>
-                <input type="text" name="ecur_institucions[]" class="form-control">
+                <input type="text" name="ecur_institucions[]" class="form-control"placeholder="Institución">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -78,7 +78,7 @@
             </div>
             <div class="col-md-4">
                 <label>Carga Horaria(Horas)*</label>
-                <input type="number" step="1" name="ecur_carga_horarias[]" class="form-control">
+                <input type="number" step="1" name="ecur_carga_horarias[]" class="form-control"placeholder="Carga Horaria(Horas)">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

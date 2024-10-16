@@ -10,7 +10,7 @@
                 <input type="hidden" name="hab_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-12">
                     <label>Habilidad/Conocimiento*</label>
-                    <textarea name="hab_habilidads[]" class="form-control">{{ $item->habilidad }}</textarea>
+                    <textarea name="hab_habilidads[]" class="form-control"placeholder="Habilidad/Conocimiento">{{ $item->habilidad }}</textarea>
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -24,7 +24,7 @@
             <input type="hidden" name="hab_ids[]" value="0" />
             <div class="col-md-12">
                 <label>Habilidad/Conocimiento*</label>
-                <textarea type="text" name="hab_habilidads[]" class="form-control"></textarea>
+                <textarea type="text" name="hab_habilidads[]" class="form-control"placeholder="Habilidad/Conocimiento"></textarea>
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

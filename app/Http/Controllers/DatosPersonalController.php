@@ -83,7 +83,8 @@ class DatosPersonalController extends Controller
             $datos_personal->save();
 
             DB::commit();
-            return redirect()->route("datos_personals.index")->with("success", "Registro realizado");
+            // return redirect()->route("datos_personals.index")->with("success", "Registro realizado");
+            return redirect()->route("evaluacions.index")->with("success", "Registro realizado");
         } catch (\Exception $e) {
             Log::debug($e->getMessage());
             DB::rollBack();

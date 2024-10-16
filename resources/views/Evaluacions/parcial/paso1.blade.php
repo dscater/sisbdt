@@ -20,16 +20,31 @@
                         <option value="SEXTO" {{ $item->nivel == 'SEXTO' ? 'selected' : '' }}>SEXTO</option>
                         <option value="SÉPTIMO" {{ $item->nivel == 'SÉPTIMO' ? 'selected' : '' }}>SÉPTIMO</option>
                         <option value="OCTAVO" {{ $item->nivel == 'OCTAVO' ? 'selected' : '' }}>OCTAVO</option>
-                        <option value="PRIMERO MEDIO" {{ $item->nivel == 'PRIMERO MEDIO' ? 'selected' : '' }}>PRIMERO MEDIO</option>
-                        <option value="SEGUNDO MEDIO" {{ $item->nivel == 'SEGUNDO MEDIO' ? 'selected' : '' }}>SEGUNDO MEDIO</option>
-                        <option value="TERCERO MEDIO" {{ $item->nivel == 'TERCERO MEDIO' ? 'selected' : '' }}>TERCERO MEDIO</option>
-                        <option value="CUARTO MEDIO" {{ $item->nivel == 'CUARTO MEDIO' ? 'selected' : '' }}>CUARTO MEDIO</option>
-                        <option value="PRIMERO DE SECUNDARIA" {{ $item->nivel == 'PRIMERO DE SECUNDARIA' ? 'selected' : '' }}>PRIMERO DE SECUNDARIA</option>
-                        <option value="SEGUNDO DE SECUNDARIA" {{ $item->nivel == 'SEGUNDO DE SECUNDARIA' ? 'selected' : '' }}>SEGUNDO DE SECUNDARIA</option>
-                        <option value="TERCERO DE SECUNDARIA" {{ $item->nivel == 'TERCERO DE SECUNDARIA' ? 'selected' : '' }}>TERCERO DE SECUNDARIA</option>
-                        <option value="CUARTO DE SECUNDARIA" {{ $item->nivel == 'CUARTO DE SECUNDARIA' ? 'selected' : '' }}>CUARTO DE SECUNDARIA</option>
-                        <option value="QUINTO DE SECUNDARIA" {{ $item->nivel == 'QUINTO DE SECUNDARIA' ? 'selected' : '' }}>QUINTO DE SECUNDARIA</option>
-                        <option value="SEXTO DE SECUNDARIA" {{ $item->nivel == 'SEXTO DE SECUNDARIA' ? 'selected' : '' }}>SEXTO DE SECUNDARIA</option>
+                        <option value="PRIMERO MEDIO" {{ $item->nivel == 'PRIMERO MEDIO' ? 'selected' : '' }}>PRIMERO
+                            MEDIO</option>
+                        <option value="SEGUNDO MEDIO" {{ $item->nivel == 'SEGUNDO MEDIO' ? 'selected' : '' }}>SEGUNDO
+                            MEDIO</option>
+                        <option value="TERCERO MEDIO" {{ $item->nivel == 'TERCERO MEDIO' ? 'selected' : '' }}>TERCERO
+                            MEDIO</option>
+                        <option value="CUARTO MEDIO" {{ $item->nivel == 'CUARTO MEDIO' ? 'selected' : '' }}>CUARTO
+                            MEDIO</option>
+                        <option value="PRIMERO DE SECUNDARIA"
+                            {{ $item->nivel == 'PRIMERO DE SECUNDARIA' ? 'selected' : '' }}>PRIMERO DE SECUNDARIA
+                        </option>
+                        <option value="SEGUNDO DE SECUNDARIA"
+                            {{ $item->nivel == 'SEGUNDO DE SECUNDARIA' ? 'selected' : '' }}>SEGUNDO DE SECUNDARIA
+                        </option>
+                        <option value="TERCERO DE SECUNDARIA"
+                            {{ $item->nivel == 'TERCERO DE SECUNDARIA' ? 'selected' : '' }}>TERCERO DE SECUNDARIA
+                        </option>
+                        <option value="CUARTO DE SECUNDARIA"
+                            {{ $item->nivel == 'CUARTO DE SECUNDARIA' ? 'selected' : '' }}>CUARTO DE SECUNDARIA
+                        </option>
+                        <option value="QUINTO DE SECUNDARIA"
+                            {{ $item->nivel == 'QUINTO DE SECUNDARIA' ? 'selected' : '' }}>QUINTO DE SECUNDARIA
+                        </option>
+                        <option value="SEXTO DE SECUNDARIA"
+                            {{ $item->nivel == 'SEXTO DE SECUNDARIA' ? 'selected' : '' }}>SEXTO DE SECUNDARIA</option>
                     </select>
                     <div class="valid-feedback">
                     </div>
@@ -44,7 +59,8 @@
                         <option value="PRIMARIA" {{ $item->grado == 'PRIMARIA' ? 'selected' : '' }}>PRIMARIA</option>
                         <option value="SECUNDARIA" {{ $item->grado == 'SECUNDARIA' ? 'selected' : '' }}>SECUNDARIA
                         </option>
-                        <option value="BACHILLER" {{ $item->grado == 'BACHILLER' ? 'selected' : '' }}>BACHILLER</option>
+                        <option value="BACHILLER" {{ $item->grado == 'BACHILLER' ? 'selected' : '' }}>BACHILLER
+                        </option>
                     </select>
                     <div class="valid-feedback">
 
@@ -56,7 +72,7 @@
                 <div class="col-md-4">
                     <label>Institución*</label>
                     <input type="text" name="fb_institucions[]" value="{{ $item->institucion }}"
-                        class="form-control">
+                        placeholder="Institución" class="form-control">
                     <div class="valid-feedback">
 
                     </div>
@@ -114,7 +130,7 @@
             </div>
             <div class="col-md-4">
                 <label>Institución*</label>
-                <input type="text" name="fb_institucions[]" class="form-control">
+                <input type="text" name="fb_institucions[]" class="form-control" placeholder="Institución">
                 <div class="valid-feedback">
 
                 </div>

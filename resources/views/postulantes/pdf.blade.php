@@ -197,7 +197,11 @@
                 <td class="bold derecha" width="20%">Nombre(s):</td>
                 <td width="35%">{{ $usuario->nombres }}</td>
                 <td class="foto" rowspan="4" colspan="2">
+                    @if($usuario->datos_personal)
+                    <img src="{{ $usuario->datos_personal->foto_b64 }}" alt="">
+                    @else
                     <img src="{{ $usuario->foto_b64 }}" alt="">
+                    @endif
                 </td>
             </tr>
             <tr>

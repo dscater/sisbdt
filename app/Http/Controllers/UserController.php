@@ -21,7 +21,15 @@ class UserController extends Controller
 
             "parametrizacions.index",
 
-            "reportes.productos",
+            "reportes.postulantes",
+        ],
+        "RECURSOS HUMANOS" => [
+            "usuarios.index",
+            "usuarios.create",
+            "usuarios.edit",
+            "usuarios.destroy",
+
+            "reportes.postulantes",
         ],
         "POSTULANTE" => [],
     ];

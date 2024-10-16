@@ -10,7 +10,8 @@
                 <input type="hidden" name="ec_ids[]" value="{{ $item->id }}" />
                 <div class="col-md-4">
                     <label>Título profesional*</label>
-                    <input type="text" name="ec_titulos[]" value="{{ $item->titulo }}" class="form-control">
+                    <input type="text" name="ec_titulos[]" value="{{ $item->titulo }}"
+                        class="form-control"placeholder="Título profesional">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -32,7 +33,8 @@
                                 </optgroup>
                             @else
                                 <option value="{{ $carrera['value'] }}"
-                                    {{ $item->carrera == mb_strtoupper($carrera['value']) ? 'selected' : '' }}>{{ mb_strtoupper($carrera['label']) }}
+                                    {{ $item->carrera == mb_strtoupper($carrera['value']) ? 'selected' : '' }}>
+                                    {{ mb_strtoupper($carrera['label']) }}
                                 </option>
                             @endif
                         @endforeach
@@ -46,7 +48,7 @@
                 <div class="col-md-4">
                     <label>Institución*</label>
                     <input type="text" name="ec_institucions[]" value="{{ $item->institucion }}"
-                        class="form-control">
+                        class="form-control"placeholder="Institución">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -57,10 +59,13 @@
                     <label>Nivel profesional*</label>
                     <select name="ec_nivels[]" class="form-select">
                         <option value="">- Seleccione -</option>
-                        <option value="TÉCNICO MEDIO" {{ $item->nivel == 'TÉCNICO MEDIO' ? 'selected' : '' }}>TÉCNICO MEDIO</option>
-                        <option value="TÉCNICO SUPERIOR" {{ $item->nivel == 'TÉCNICO SUPERIOR' ? 'selected' : '' }}>TÉCNICO SUPERIOR
+                        <option value="TÉCNICO MEDIO" {{ $item->nivel == 'TÉCNICO MEDIO' ? 'selected' : '' }}>TÉCNICO
+                            MEDIO</option>
+                        <option value="TÉCNICO SUPERIOR" {{ $item->nivel == 'TÉCNICO SUPERIOR' ? 'selected' : '' }}>
+                            TÉCNICO SUPERIOR
                         </option>
-                        <option value="LICENCIATURA" {{ $item->nivel == 'LICENCIATURA' ? 'selected' : '' }}>LICENCIATURA</option>
+                        <option value="LICENCIATURA" {{ $item->nivel == 'LICENCIATURA' ? 'selected' : '' }}>
+                            LICENCIATURA</option>
                     </select>
                     <div class="valid-feedback">
                     </div>
@@ -114,7 +119,7 @@
             <input type="hidden" name="ec_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Título profesional*</label>
-                <input type="text" name="ec_titulos[]" class="form-control">
+                <input type="text" name="ec_titulos[]" class="form-control"placeholder="Título profesional">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -134,7 +139,7 @@
             </div>
             <div class="col-md-4">
                 <label>Institución*</label>
-                <input type="text" name="ec_institucions[]" class="form-control">
+                <input type="text" name="ec_institucions[]" class="form-control"placeholder="Institución">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

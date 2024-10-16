@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PortalController::class, 'index'])->name('portal.index');
@@ -35,6 +36,7 @@ Route::get("getCarreras", [EvaluacionCarreraController::class, 'getArrayCarreras
 Route::middleware('auth')->prefix("admin")->group(function () {
     // INICIO
     Route::get('/inicio', [InicioController::class, 'inicio'])->name('inicio');
+    Route::get('/cantidadEstudiantesCarrera', [InicioController::class, 'cantidadEstudiantesCarrera'])->name('cantidadEstudiantesCarrera');
 
     // perfil
     Route::get('/perfil', [LoginController::class, 'perfil'])->name('perfil');
@@ -62,12 +64,12 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("usuarios/listado/byTipo", [UsuarioController::class, 'byTipo'])->name("usuarios.byTipo");
     Route::put("usuarios/update/{user}", [UsuarioController::class, 'update'])->name("usuarios.update");
     Route::get("usuarios/pdf/{usuario}", [UsuarioController::class, 'pdf'])->name("usuarios.pdf");
+    Route::post("usuarios/destroy/{usuario}", [UsuarioController::class, 'destroy'])->name("usuarios.destroy");
     Route::resource("usuarios", UsuarioController::class)->only(
         [
             "index",
             "store",
             'show',
-            'destroy'
         ]
     );
 
@@ -104,5 +106,7 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("postulantes", [UsuarioController::class, 'postulantes'])->name("postulantes");
 
     // REPORTES
+    Route::get("reportes/postulantes", [ReporteController::class, 'postulantes'])->name("reportes.postulantes");
+    Route::get("reportes/postulantes/pdf", [ReporteController::class, 'postulantes_pdf'])->name("reportes.postulantes_pdf");
 });
 // require __DIR__ . '/auth.php';

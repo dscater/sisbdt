@@ -10,10 +10,12 @@
     <div class="row mt-5">
         <div class="col-12">
             <div class="row">
-                <div class="col-12">
-                    <p class="alert alert-success"><strong>Puntuación:</strong>
-                        {{ $usuario->evaluacion ? $usuario->evaluacion->puntuacion : 0 }}</p>
-                </div>
+                @if (Auth::user()->tipo != 'POSTULANTE')
+                    <div class="col-12">
+                        <p class="alert alert-success"><strong>Puntuación:</strong>
+                            {{ $usuario->evaluacion ? $usuario->evaluacion->puntuacion : 0 }}</p>
+                    </div>
+                @endif
                 <div class="col-md-4">
                     <p><strong>Nombre(s): </strong> {{ $usuario->nombres }}</p>
                 </div>
@@ -24,7 +26,12 @@
                     <p><strong>Email: </strong> {{ $usuario->email }}</p>
                 </div>
                 <div class="col-md-4">
-                    <p><strong>Foto: </strong> <img src="{{ $usuario->url_foto }}" alt="" width="100px"></p>
+                    @if ($usuario->datos_personal)
+                        <p><strong>Foto: </strong> <img src="{{ $usuario->datos_personal->url_foto }}" alt=""
+                                width="100px"></p>
+                    @else
+                        <p><strong>Foto: </strong> <img src="{{ $usuario->url_foto }}" alt="" width="100px"></p>
+                    @endif
                 </div>
 
                 <div class="col-md-4">
@@ -426,8 +433,18 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <a href="{{route('postulantes')}}" class="btn btn-secondary">Volver</a>
+        @if (Auth::user()->tipo != 'POSTULANTE')
+            <div class="col-md-3">
+                <a href="{{ route('postulantes') }}" class="btn btn-secondary w-100">Volver</a>
+            </div>
+        @else
+            <div class="col-md-3">
+                <a href="{{ route('evaluacions.index') }}" class="btn btn-secondary w-100">Volver</a>
+            </div>
+        @endif
+        <div class="col-md-4">
+            <a href="{{ route('usuarios.pdf', $usuario->id) }}" target="_blank"
+                class="btn btn-primary btn-sm w-100 btn-block"><i class="fa fa-file-pdf"></i> Generar pdf</a>
         </div>
     </div>
 @endsection

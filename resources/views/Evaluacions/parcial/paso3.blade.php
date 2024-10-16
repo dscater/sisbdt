@@ -11,7 +11,7 @@
                 <div class="col-md-4">
                     <label>Institución*</label>
                     <input type="text" name="fp_institucions[]" value="{{ $item->institucion }}"
-                        class="form-control">
+                        class="form-control"placeholder="Institución">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Título postgrado*</label>
-                    <input type="text" name="fp_titulos[]" value="{{ $item->titulo }}" class="form-control">
+                    <input type="text" name="fp_titulos[]" value="{{ $item->titulo }}" class="form-control"placeholder="Título postgrado">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Nivel académico*</label>
-                    <input type="text" name="fp_nivels[]" value="{{ $item->nivel }}" class="form-control">
+                    <input type="text" name="fp_nivels[]" value="{{ $item->nivel }}" class="form-control"placeholder="Nivel académico">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -69,7 +69,7 @@
             <input type="hidden" name="fp_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Institución*</label>
-                <input type="text" name="fp_institucions[]" class="form-control">
+                <input type="text" name="fp_institucions[]" class="form-control"placeholder="Institución">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -87,7 +87,7 @@
             </div>
             <div class="col-md-4">
                 <label>Título postgrado*</label>
-                <input type="text" name="fp_titulos[]" class="form-control">
+                <input type="text" name="fp_titulos[]" class="form-control"placeholder="Título postgrado">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">
@@ -96,7 +96,7 @@
             </div>
             <div class="col-md-4">
                 <label>Nivel académico*</label>
-                <input type="text" name="fp_nivels[]" class="form-control">
+                <input type="text" name="fp_nivels[]" class="form-control"placeholder="Nivel académico">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

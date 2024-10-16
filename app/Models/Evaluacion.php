@@ -15,6 +15,13 @@ class Evaluacion extends Model
         "puntuacion"
     ];
 
+    protected $appends = ["fecha_registro_t"];
+
+    public function getFechaRegistroTAttribute()
+    {
+        return date("d/m/Y", strtotime($this->fecha_registro));
+    }
+
     public function evaluacion_basicas()
     {
         return $this->hasMany(EvaluacionBasica::class, 'evaluacion_id');

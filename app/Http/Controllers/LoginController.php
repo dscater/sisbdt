@@ -18,7 +18,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $res = Auth::attempt(["email" => $request->email, "password" => $request->password]);
+        $res = Auth::attempt(["email" => $request->email, "password" => $request->password, "status" => 1]);
         if ($res) {
             return redirect()->route("inicio");
         }
@@ -62,14 +62,17 @@ class LoginController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('inicio')->with("success", "Registro éxitoso");
+        return redirect()->route('datos_personals.index')->with("success", "Registro éxitoso");
     }
 
     public function perfil()
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view("Auth.perfil", compact("user"));
+            if ($user->tipo == 'POSTULANTE') {
+                return view("Auth.perfil", compact("user"));
+            }
+            return view("Auth.perfil_admin", compact("user"));
         } else {
             return redirect()->route("inicio");
         }

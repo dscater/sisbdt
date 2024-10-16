@@ -101,7 +101,7 @@ class EvaluacionController extends Controller
 
             DB::commit();
             return response()->JSON([
-                "message" => "Registro realizado correctamente"
+                "message" => "Registro realizado correctamente",
             ]);
         } catch (ValidationException $e) {
             DB::rollBack();
@@ -148,12 +148,13 @@ class EvaluacionController extends Controller
                     $reglas = [
                         'nivel' => 'required',
                         'grado' => 'required',
-                        'institucion' => 'required',
+                        "institucion" => 'required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/uu'
                     ];
                     $messages = [
                         "nivel.required" => "El campo Nivel es obligatorio (Paso 1)",
                         "grado.required" => "El campo Grado es obligatorio (Paso 1)",
                         "institucion.required" => "El campo Institución es obligatorio (Paso 1)",
+                        "institucion.regex" => "Formato incorrecto del campo Institución (no se permiten simbolos) (Paso 1)",
                     ];
 
                     // Crear el validador
@@ -235,7 +236,7 @@ class EvaluacionController extends Controller
                     $reglas = [
                         "titulo" => "required",
                         "carrera" => "required",
-                        "institucion" => "required",
+                        "institucion" => 'required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/uu',
                         "nivel" => "required",
                         "fecha_titulo" => "required",
                         "estado" => "required",
@@ -245,6 +246,7 @@ class EvaluacionController extends Controller
                         "titulo.required" => "El campo Título es obligatorio (Paso 2)",
                         "carrera.required" => "El campo Carrera es obligatorio (Paso 2)",
                         "institucion.required" => "El campo Institución es obligatorio (Paso 2)",
+                        "institucion.regex" => "Formato incorrecto del campo Institución (no se permiten simbolos) (Paso 2)",
                         "nivel.required" => "El campo Nivel es obligatorio (Paso 2)",
                         "fecha_titulo.required" => "El campo Fecha de Título es obligatorio (Paso 2)",
                         "estado.required" => "El campo Estado es obligatorio (Paso 2)",
@@ -333,17 +335,20 @@ class EvaluacionController extends Controller
                         "postgrado" => mb_strtoupper($fp_postgrados[$i]),
                     ];
                     $reglas = [
-                        "institucion" => "required",
+                        "institucion" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/uu",
                         "fecha_postgrado" => "required",
-                        "titulo" => "required",
-                        "nivel" => "required",
+                        "titulo" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/uu",
+                        "nivel" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/uu",
                         "postgrado" => "required",
                     ];
                     $messages = [
                         "institucion.required" => "El campo Institución es obligatorio (Paso 3)",
+                        "institucion.regex" => "Formato incorrecto del campo Institución (no se permiten simbolos) (Paso 3)",
                         "fecha_postgrado.required" => "El campo Fecha de postgrado es obligatorio (Paso 3)",
                         "titulo.required" => "El campo Título es obligatorio (Paso 3)",
-                        "nivel.required" => "El campo Nivel es obligatorio (Paso 3)",
+                        "titulo.regex" => "Formato incorrecto del campo Título (no se permiten simbolos) (Paso 3)",
+                        "nivel.required" => "El campo Nivel académico es obligatorio (Paso 3)",
+                        "nivel.regex" => "Formato incorrecto del campo Nivel académico (no se permiten simbolos) (Paso 3)",
                         "postgrado.required" => "El campo Postgrado es obligatorio (Paso 3)",
                     ];
 
@@ -420,16 +425,20 @@ class EvaluacionController extends Controller
                         "carga_horaria" => mb_strtoupper($ecur_carga_horarias[$i]),
                     ];
                     $reglas = [
-                        "nombre" => "required",
-                        "institucion" => "required",
+                        "nombre" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
+                        "institucion" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
                         "fecha" => "required",
-                        "carga_horaria" => "required",
+                        "carga_horaria" => "required|numeric|min:0",
                     ];
                     $messages = [
                         "nombre.required" => "El campo Nombre Curso es obligatorio (Paso 4)",
+                        "nombre.regex" => "Formato incorrecto del campo Nombre Curso (no se permiten simbolos) (Paso 4)",
                         "institucion.required" => "El campo Institución es obligatorio (Paso 4)",
+                        "institucion.regex" => "Formato incorrecto del campo Institución (no se permiten simbolos) (Paso 4)",
                         "fecha.required" => "El campo Fecha es obligatorio (Paso 4)",
                         "carga_horaria.required" => "El campo Carga horaria es obligatorio (Paso 4)",
+                        "carga_horaria.numeric" => "El campo Carga horaria debe ser númerico",
+                        "carga_horaria.min" => "El campo Carga horaria debe ser mínimo :min",
                     ];
 
                     // Crear el validador
@@ -496,15 +505,17 @@ class EvaluacionController extends Controller
                         "descripcion" => mb_strtoupper($el_descripcions[$i]),
                     ];
                     $reglas = [
-                        "cargo" => "required",
-                        "institucion" => "required",
+                        "cargo" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
+                        "institucion" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
                         "fecha_ini" => "required",
                         "fecha_fin" => "required",
                         "descripcion" => "required",
                     ];
                     $messages = [
                         "cargo.required" => "El campo Cargo es obligatorio (Paso 5)",
+                        "cargo.regex" => "Formato incorrecto del campo Cargo (no se permiten simbolos) (Paso 5)",
                         "institucion.required" => "El campo Institución/Empresa es obligatorio (Paso 5)",
+                        "institucion.regex" => "Formato incorrecto del campo Institución/Empresa (no se permiten simbolos) (Paso 5)",
                         "fecha_ini.required" => "El campo Fecha Inicio es obligatorio (Paso 5)",
                         "fecha_fin.required" => "El campo Fecha Final es obligatorio (Paso 5)",
                         "descripcion.required" => "El campo Descripción del cargo es obligatorio (Paso 5)",
@@ -573,13 +584,15 @@ class EvaluacionController extends Controller
                         "fecha" => $ed_fechas[$i],
                     ];
                     $reglas = [
-                        "merito" => "required",
-                        "institucion" => "required",
+                        "merito" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
+                        "institucion" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
                         "fecha" => "required",
                     ];
                     $messages = [
                         "merito.required" => "El campo Mérito es obligatorio (Paso 6)",
+                        "merito.regex" => "Formato incorrecto del campo Mérito (no se permiten simbolos) (Paso 6)",
                         "institucion.required" => "El campo Institución es obligatorio (Paso 6)",
+                        "institucion.regex" => "Formato incorrecto del campo Institución (no se permiten simbolos) (Paso 6)",
                         "fecha.required" => "El campo Fecha es obligatorio (Paso 6)",
                     ];
 
@@ -704,10 +717,11 @@ class EvaluacionController extends Controller
                         "habilidad" => mb_strtoupper($hab_habilidads[$i]),
                     ];
                     $reglas = [
-                        "habilidad" => "required",
+                        "habilidad" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
                     ];
                     $messages = [
                         "habilidad.required" => "El campo Habilidad/Conocimiento es obligatorio (Paso 8)",
+                        "habilidad.regex" => "Formato incorrecto del campo Habilidad/Conocimiento (no se permiten simbolos) (Paso 8)",
                     ];
 
                     // Crear el validador
@@ -756,10 +770,11 @@ class EvaluacionController extends Controller
                         "cualidad" => mb_strtoupper($cua_cualidads[$i]),
                     ];
                     $reglas = [
-                        "cualidad" => "required",
+                        "cualidad" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
                     ];
                     $messages = [
                         "cualidad.required" => "El campo Cualidad es obligatorio (Paso 9)",
+                        "cualidad.regex" => "Formato incorrecto del campo Cualidad (no se permiten simbolos) (Paso 9)",
                     ];
 
                     // Crear el validador
@@ -819,22 +834,27 @@ class EvaluacionController extends Controller
                         "descripcion" => mb_strtoupper($ref_descripcions[$i]),
                     ];
                     $reglas = [
-                        "nombre_ref" => "required",
-                        "cel_ref" => "required|regex:/^\d{10}$/",
+                        "nombre_ref" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
+                        "cel_ref" => "required|numeric|digits_between:6,10",
                         "correo_ref" => "required|email",
-                        "cargo_ref" => "required",
-                        "relacion_ref" => "required",
-                        "descripcion" => "required",
+                        "cargo_ref" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
+                        "relacion_ref" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
+                        "descripcion" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
                     ];
                     $messages = [
                         "nombre_ref.required" => "El campo Nombre referencia es obligatorio (Paso 10)",
+                        "nombre.regex" => "Formato incorrecto del campo Nombre referencia (no se permiten simbolos) (Paso 10)",
                         "cel_ref.required" => "El campo Celular referencia es obligatorio (Paso 10)",
-                        "cel_ref.regex" => "El campo Celular referencia no es valido (debe ser un valor número de 1-10 digitos) (Paso 10)",
+                        "cel_ref.numeric" => "El campo Celular referencia debe ser un valor númerico (Paso 10)",
+                        "cel_ref.digits_between" => "El campo Celular referencia no es valido (debe ser un valor número entre 6-10 digitos) (Paso 10)",
                         "correo_ref.required" => "El campo Correo referencia es obligatorio (Paso 10)",
                         "correo_ref.email" => "El campo Correo referencia debe ser un correo valido (Paso 10)",
                         "cargo_ref.required" => "El campo Cargo referencia es obligatorio (Paso 10)",
+                        "cargo_ref.regex" => "Formato incorrecto del campo Cargo referencia (no se permiten simbolos) (Paso 10)",
                         "relacion_ref.required" => "El campo Relación referencia es obligatorio (Paso 10)",
+                        "relacion_ref.regex" => "Formato incorrecto del campo Relación referencia (no se permiten simbolos) (Paso 10)",
                         "descripcion.required" => "El campo Descripción es obligatorio (Paso 10)",
+                        "descripcion.regex" => "Formato incorrecto del campo Descripción (no se permiten simbolos) (Paso 10)",
                     ];
 
                     // Crear el validador
