@@ -339,7 +339,7 @@
                                             @foreach ($datos_otros->idiomas as $item)
                                                 <tr>
                                                     <td>{{ $cont++ }}</td>
-                                                    <td>{{ $item->idioma }}</td>
+                                                    <td>{{ $item->l_idioma->nombre }}</td>
                                                     <td>{{ $item->nivel }}</td>
                                                 </tr>
                                             @endforeach
