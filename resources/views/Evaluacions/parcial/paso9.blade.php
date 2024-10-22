@@ -33,10 +33,10 @@
             </div>
         </div>
     @endif
-    <div class="row mt-3">
+    {{-- <div class="row mt-3">
         <div class="col-12 text-center">
             <button type="button" class="btn btn-success mx-auto btn-sm btnAgregar"><i class="fa fa-plus"></i>
                 Agregar</button>
         </div>
-    </div>
+    </div> --}}
 </form>

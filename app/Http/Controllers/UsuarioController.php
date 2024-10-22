@@ -19,7 +19,7 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $usuarios = User::with(["evaluacion"])->where("tipo", "POSTULANTE")->where("status", 1)->get();
+        $usuarios = User::with(["evaluacion","datos_personal"])->where("tipo", "POSTULANTE")->where("status", 1)->get();
         return response()->JSON(["data" => $usuarios]);
     }
 

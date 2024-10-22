@@ -17,6 +17,8 @@
     <link href="{{ asset('js/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css')}}" rel="stylesheet"/>
     <link href="{{ asset('assets/template/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/config.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/select2/select2-4.1.0/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     @yield('css')
 </head>
 
@@ -76,6 +78,8 @@
     <script src="{{ asset('js/datatable.js') }}"></script>
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{ asset('assets/template/js/custom/landing.js') }}"></script>
+    <script src="{{ asset('assets/select2/select2-4.1.0/dist/js/select2.full.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             toastr.options = {

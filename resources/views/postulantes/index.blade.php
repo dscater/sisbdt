@@ -6,6 +6,9 @@
 
 @section('css')
     <style>
+        .btn-opcion{
+            width: 43px;
+        }
     </style>
 @endsection
 
@@ -21,6 +24,7 @@
                                 <th class="w-10px pe-2"></th>
                                 <th class="min-w-125px">Email</th>
                                 <th class="min-w-125px">Nombre Completo</th>
+                                <th class="min-w-125px">Nro. C.I.</th>
                                 <th class="min-w-125px">Puntuación</th>
                                 <th class="min-w-125px">Fecha de registro</th>
                                 <th class="text-end" width="60px">Acción</th>
@@ -56,6 +60,13 @@
                 data: "full_name",
             },
             {
+                title: "NRO. C.I.",
+                data: null,
+                render: function(data, type, row) {
+                    return row.datos_personal ? row.datos_personal.nro_ci : ''
+                }
+            },
+            {
                 title: "PUNTUACIÓN",
                 data: null,
                 render: function(data, type, row) {
@@ -73,11 +84,11 @@
                     let url_ver = "{{ route('usuarios.index') }}/" + row.id;
                     let url_destroy = "{{ route('usuarios.index') }}/destroy/" + row.id;
                     return `
-                <a href="${url_ver}" class="mx-0 rounded-0 btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
-                <button class="mx-0 rounded-0 btn btn-info btn-sm pdf" data-id="${
+                <a href="${url_ver}" class="mx-0 rounded-0 btn-opcion btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                <button class="mx-0 rounded-0 btn-opcion btn btn-info btn-sm pdf" data-id="${
                     row.id
                 }"><i class="fa fa-file-pdf"></i></button>
-                <button class="mx-0 rounded-0 btn btn-danger btn-sm eliminar" data-nombre="${row.full_name}" data-url="${url_destroy}" data-id="${
+                <button class="mx-0 rounded-0 btn-opcion btn btn-danger btn-sm eliminar" data-nombre="${row.full_name}" data-url="${url_destroy}" data-id="${
                     row.id
                 }"><i class="fa fa-trash"></i></button>
             `;

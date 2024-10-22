@@ -21,8 +21,8 @@
                         <label for="">Documento de identificación*</label>
                         <select name="tipo_ci" id="tipo_ci" class="form-select" required>
                             <option value="">- Seleccione -</option>
-                            <option value="CÉDULA DE IDENTIDAD">CÉDULA DE IDENTIDAD</option>
-                            <option value="EXTRANJERO">EXTRANJERO</option>
+                            <option value="CÉDULA DE IDENTIDAD"{{$datos_personal ? ($datos_personal->tipo_ci=='CÉDULA DE IDENTIDAD'?'selected':''):''}}>CÉDULA DE IDENTIDAD</option>
+                            <option value="EXTRANJERO"{{$datos_personal ? ($datos_personal->tipo_ci=='EXTRANJERO'?'selected':''):''}}>EXTRANJERO</option>
                         </select>
                         @if ($errors->has('tipo_ci'))
                             <span class="text-danger">{{ $errors->first('tipo_ci') }}</span>
@@ -56,8 +56,8 @@
                         <label for="">Genero*</label>
                         <select name="genero" id="genero" class="form-select" required>
                             <option value="">- Seleccione -</option>
-                            <option value="MASCULINO">MASCULINO</option>
-                            <option value="FEMENINO">FEMENINO</option>
+                            <option value="MASCULINO" {{$datos_personal ? ($datos_personal->genero=='MASCULINO'?'selected':''):''}}>MASCULINO</option>
+                            <option value="FEMENINO" {{$datos_personal ? ($datos_personal->genero=='FEMENINO'?'selected':''):''}}>FEMENINO</option>
                         </select>
                         @if ($errors->has('genero'))
                             <span class="text-danger">{{ $errors->first('genero') }}</span>
@@ -66,7 +66,7 @@
                     <div class="col-md-4 form-group mb-3">
                         <label for="">Foto*</label>
                         <input type="file" class="form-control" name="foto" id="foto"
-                            accept=".jpg,.jpeg,.png,.webp" required />
+                            accept=".jpg,.jpeg,.png,.webp" />
                         @if ($datos_personal && $datos_personal->url_foto)
                             <img src="{{ $datos_personal->url_foto }}" alt="Foto" class="foto_datos_personal">
                         @endif
@@ -93,7 +93,7 @@
                     <div class="col-md-4 form-group mb-3">
                         <label for="">Cargar Hoja de Vida(PDF)*</label>
                         <input type="file" class="form-control" name="hoja_vida" id="hoja_vida" accept=".pdf"
-                            required />
+                            />
                         @if ($datos_personal && $datos_personal->url_hoja_vida)
                             <a href="{{$datos_personal->url_hoja_vida}}" target="_blank" class="btn btn-success btn-sm"><i class="fa fa-download"></i> Hoja de Vida</a>
                         @endif

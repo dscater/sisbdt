@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Carrera*</label>
-                    <select name="ec_carreras[]" class="form-select">
+                    <select name="ec_carreras[]" class="form-select select2">
                         @foreach ($array_carreras as $carrera)
                             @if ($carrera['grupo'] == 'si')
                                 <optgroup label="{{ $carrera['label'] }}">
@@ -99,13 +99,7 @@
                 </div>
                 <div class="col-md-4">
                     <label>Número de título*</label>
-                    <select name="ec_disciplinas[]" class="form-select">
-                        <option value="">- Seleccione -</option>
-                        <option value="INGENIERIA" {{ $item->disciplina == 'INGENIERIA' ? 'selected' : '' }}>INGENIERIA
-                        </option>
-                        <option value="LICENCIATURA" {{ $item->disciplina == 'LICENCIATURA' ? 'selected' : '' }}>
-                            LICENCIATURA</option>
-                    </select>
+                    <input type="text" name="ec_disciplinas[]" value="{{ $item->disciplina }}" class="form-control" placeholder="Número de título">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -128,7 +122,7 @@
             </div>
             <div class="col-md-4">
                 <label>Carrera*</label>
-                <select name="ec_carreras[]" class="form-select">
+                <select name="ec_carreras[]" class="form-select select2">
                     {!! $html_option_carreras !!}
                 </select>
                 <div class="valid-feedback">
@@ -186,11 +180,7 @@
             </div>
             <div class="col-md-4">
                 <label>Número de título*</label>
-                <select name="ec_disciplinas[]" class="form-select">
-                    <option value="">- Seleccione -</option>
-                    <option value="INGENIERIA">INGENIERIA</option>
-                    <option value="LICENCIATURA">LICENCIATURA</option>
-                </select>
+                <input type="text" name="ec_disciplinas[]" class="form-control" placeholder="Número de título">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

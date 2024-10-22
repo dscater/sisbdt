@@ -80,14 +80,14 @@
                                     <span class="text-danger">{{ $errors->first('tecnico_medio') }}</span>
                                 @endif
                             </div>
-                            <div class="col-md-4 form-group mb-3">
+                            {{-- <div class="col-md-4 form-group mb-3">
                                 <label for="">Disciplina Ingeniería</label>
                                 <input type="number" class="form-control" name="disciplina_ingenieria"
                                     value="{{ $parametrizacion ? $parametrizacion->disciplina_ingenieria : 0 }}" />
                                 @if ($errors->has('disciplina_ingenieria'))
                                     <span class="text-danger">{{ $errors->first('disciplina_ingenieria') }}</span>
                                 @endif
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="row mt-0">
                             <div class="separator separator-content my-14"></div>

@@ -38,8 +38,8 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label>Nivel académico*</label>
-                    <input type="text" name="fp_nivels[]" value="{{ $item->nivel }}" class="form-control"placeholder="Nivel académico">
+                    <label>Número de título*</label>
+                    <input type="text" name="fp_nivels[]" value="{{ $item->nivel }}" class="form-control"placeholder="Número de título">
                     <div class="valid-feedback">
                     </div>
                     <div class="invalid-feedback">
@@ -95,8 +95,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <label>Nivel académico*</label>
-                <input type="text" name="fp_nivels[]" class="form-control"placeholder="Nivel académico">
+                <label>Número de título*</label>
+                <input type="text" name="fp_nivels[]" class="form-control"placeholder="Número de título">
                 <div class="valid-feedback">
                 </div>
                 <div class="invalid-feedback">

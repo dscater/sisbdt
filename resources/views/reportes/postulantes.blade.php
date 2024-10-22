@@ -27,11 +27,11 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Fecha Inicio</label>
-                                    <input type="date" name="fecha_ini" class="form-control">
+                                    <input type="date" name="fecha_ini" value="{{date("Y-m-d")}}" class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Fecha Fin</label>
-                                    <input type="date" name="fecha_fin" class="form-control">
+                                    <input type="date" name="fecha_fin" value="{{date("Y-m-d")}}" class="form-control">
                                 </div>
                             </div>
                         </div>

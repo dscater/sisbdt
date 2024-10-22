@@ -38,6 +38,33 @@
         .row.fila .quitar:hover {
             background: #ff3300;
         }
+
+        .select2 {
+            width: 100%;
+            ;
+        }
+
+        .chosen-container {
+            width: 100% !important;
+        }
+
+        .chosen-container .chosen-single {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            height: calc(1.5em + .75rem + 2px);
+            line-height: 1.5;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+
+        .chosen-container.chosen-container-single .chosen-single {
+            display: block;
+        }
+
+        .chosen-container-active .chosen-single {
+            box-shadow: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -185,6 +212,8 @@
         let form_10 = $("#form-10");
 
         $(document).ready(function() {
+            // $('.select2').select2();
+            $('.select2').chosen();
             $('#smartwizard').smartWizard({
                 selected: 0,
                 theme: 'dots',
@@ -341,11 +370,11 @@
             form_1.on('change keyup', 'input, select', function() {
                 let value = $(this).val().trim()
                 // console.log(value)
-                if (value != '') {
-                    form_1.find("input, select").prop("required", true);
-                } else {
-                    form_1.find("input, select").removeAttr("required");
-                }
+                // if (value != '') {
+                //     form_1.find("input, select").prop("required", true);
+                // } else {
+                //     form_1.find("input, select").removeAttr("required");
+                // }
             });
             form_1.on("click", ".btnAgregar", function() {
                 let nuevo = $(nueva_fila_f1).clone();
@@ -381,7 +410,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Carrera*</label>
-                                    <select name="ec_carreras[]" class="form-select">
+                                    <select name="ec_carreras[]" class="form-select select2">
                                         {!! $html_option_carreras !!}
                                     </select>
                                     <div class="valid-feedback">
@@ -439,11 +468,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Número de título*</label>
-                                    <select name="ec_disciplinas[]" class="form-select">
-                                        <option value="">- Seleccione -</option>
-                                        <option value="INGENIERIA">INGENIERIA</option>
-                                        <option value="LICENCIATURA">LICENCIATURA</option>
-                                    </select>
+                                    <input type="text" name="ec_disciplinas[]" class="form-control" placeholder="Número de título">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -464,6 +489,8 @@
             form_2.on("click", ".btnAgregar", function() {
                 let nuevo = $(nueva_fila_f2).clone();
                 form_2.find(".fila").last().after(nuevo);
+                // $('.select2').select2();
+                $('.select2').chosen();
                 $("#smartwizard").smartWizard("fixHeight");
             })
             form_2.on("click", ".quitar", function() {
@@ -499,9 +526,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Fecha postgrado*</label>
-                                    <select name="fp_fecha_postgrados[]" class="form-select">
-                                        {!! $html_option_carreras !!}
-                                    </select>
+                                    <input type="date" name="fp_fecha_postgrados[]" class="form-control">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -518,8 +543,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Nivel académico*</label>
-                                    <input type="text" name="fp_nivels[]" class="form-control"placeholder="Nivel académico">
+                                    <label>Número de título*</label>
+                                    <input type="text" name="fp_nivels[]" class="form-control"placeholder="Número de título">
                                     <div class="valid-feedback">
                                     </div>
                                     <div class="invalid-feedback">
@@ -821,7 +846,6 @@
                             <option value="MEDIO">MEDIO</option>
                             <option value="AVANZADO">AVANZADO</option>
                         </select>
-                        <input type="text" name="id_nivel[]" class="form-control">
                         <div class="valid-feedback">
                         </div>
                         <div class="invalid-feedback">

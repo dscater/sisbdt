@@ -10,10 +10,10 @@
         }
 
         @page {
-            margin-top: 1.5cm;
-            margin-bottom: 0.3cm;
-            margin-left: 0.3cm;
-            margin-right: 0.3cm;
+            margin-top: 2cm;
+            margin-bottom: 2cm;
+            margin-left: 2.5cm;
+            margin-right: 2cm;
         }
 
         table {
@@ -170,7 +170,7 @@
         <thead class="bg-principal">
             <tr>
                 <th width="3%">N°</th>
-                <th width="5%">FOTO</th>
+                {{-- <th width="5%">FOTO</th> --}}
                 <th>APELLIDOS</th>
                 <th>NOMBRE(S)</th>
                 <th>EMAIL</th>
@@ -192,11 +192,11 @@
             @foreach ($usuarios as $user)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda centreado">
+                    {{-- <td class="img_celda centreado">
                         <img src="{{ $user->datos_personal ? $user->datos_personal->foto_b64 : $user->foto_b64 }}"
                             alt="Foto">
 
-                    </td>
+                    </td> --}}
                     <td class="">{{ $user->apellidos }}</td>
                     <td class="">{{ $user->nombres }}</td>
                     <td class="">{{ $user->email }}</td>

@@ -18,9 +18,6 @@ import { createPinia } from "pinia";
 const pinia = createPinia();
 
 // mis scripts
-import "./assets/css/config.css";
-import "./assets/css/datatables.css";
-import "./assets/css/form.css";
 // import "./assets/css/fullCalendarConfig.css";
 
 // Default Layout

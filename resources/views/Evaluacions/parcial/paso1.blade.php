@@ -72,7 +72,7 @@
                 <div class="col-md-4">
                     <label>Institución*</label>
                     <input type="text" name="fb_institucions[]" value="{{ $item->institucion }}"
-                        placeholder="Institución" class="form-control">
+                        placeholder="Institución" class="form-control" required>
                     <div class="valid-feedback">
 
                     </div>
@@ -87,7 +87,7 @@
             <input type="hidden" name="fb_ids[]" value="0" />
             <div class="col-md-4">
                 <label>Nivel Escolaridad*</label>
-                <select name="fb_nivels[]" class="form-select">
+                <select name="fb_nivels[]" class="form-select" required>
                     <option value="">- Seleccione -</option>
                     <option value="PRIMERO">PRIMARIA</option>
                     <option value="SEGUNDO">SEGUNDO</option>
@@ -116,7 +116,7 @@
             </div>
             <div class="col-md-4">
                 <label>Grado Escolaridad*</label>
-                <select name="fb_grados[]" class="form-select">
+                <select name="fb_grados[]" class="form-select" required>
                     <option value="">- Seleccione -</option>
                     <option value="PRIMARIA">PRIMARIA</option>
                     <option value="SECUNDARIA">SECUNDARIA</option>
@@ -130,7 +130,7 @@
             </div>
             <div class="col-md-4">
                 <label>Institución*</label>
-                <input type="text" name="fb_institucions[]" class="form-control" placeholder="Institución">
+                <input type="text" name="fb_institucions[]" class="form-control" placeholder="Institución" required>
                 <div class="valid-feedback">
 
                 </div>

@@ -240,7 +240,7 @@ class EvaluacionController extends Controller
                         "nivel" => "required",
                         "fecha_titulo" => "required",
                         "estado" => "required",
-                        "disciplina" => "required",
+                        "disciplina" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/uu",
                     ];
                     $messages = [
                         "titulo.required" => "El campo Título es obligatorio (Paso 2)",
@@ -251,6 +251,7 @@ class EvaluacionController extends Controller
                         "fecha_titulo.required" => "El campo Fecha de Título es obligatorio (Paso 2)",
                         "estado.required" => "El campo Estado es obligatorio (Paso 2)",
                         "disciplina.required" => "El campo Número de título es obligatorio (Paso 2)",
+                        "disciplina.regex" => "Formato incorrecto del campo Número de título (no se permiten simbolos) (Paso 2)",
                     ];
 
                     // Crear el validador
@@ -287,9 +288,9 @@ class EvaluacionController extends Controller
                                 $total_evaluacion += (float)$parametrizacion->tecnico_medio;
                                 break;
                         }
-                        if ($datos["disciplina"] == 'INGENIERIA') {
-                            $total_evaluacion += (float)$parametrizacion->disciplina_ingenieria;
-                        }
+                        // if ($datos["disciplina"] == 'INGENIERIA') {
+                        //     $total_evaluacion += (float)$parametrizacion->disciplina_ingenieria;
+                        // }
                     }
                     // fin suma puntuacion
 
@@ -348,7 +349,7 @@ class EvaluacionController extends Controller
                         "titulo.required" => "El campo Título es obligatorio (Paso 3)",
                         "titulo.regex" => "Formato incorrecto del campo Título (no se permiten simbolos) (Paso 3)",
                         "nivel.required" => "El campo Nivel académico es obligatorio (Paso 3)",
-                        "nivel.regex" => "Formato incorrecto del campo Nivel académico (no se permiten simbolos) (Paso 3)",
+                        "nivel.regex" => "Formato incorrecto del campo Número de título (no se permiten simbolos) (Paso 3)",
                         "postgrado.required" => "El campo Postgrado es obligatorio (Paso 3)",
                     ];
 

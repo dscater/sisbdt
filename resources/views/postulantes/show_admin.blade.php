@@ -330,6 +330,7 @@
                                                 <th>N°</th>
                                                 <th>Idioma</th>
                                                 <th>Nivel</th>
+                                                <th>Certificado</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -341,6 +342,7 @@
                                                     <td>{{ $cont++ }}</td>
                                                     <td>{{ $item->l_idioma->nombre }}</td>
                                                     <td>{{ $item->nivel }}</td>
+                                                    <td>{{ $item->certificado }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

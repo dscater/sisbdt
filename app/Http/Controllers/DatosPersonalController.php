@@ -12,23 +12,28 @@ class DatosPersonalController extends Controller
 {
     public $validacion = [
         "tipo_ci" => "required",
-        "nro_ci" => "required",
-        "fecha_nacimiento" => "required",
-        "lugar_nacimiento" => "required",
+        "nro_ci" => "required|numeric",
+        "fecha_nacimiento" => "required|date",
+        "lugar_nacimiento" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
         "genero" => "required",
-        "fono" => "required",
-        "dir" => "required",
+        "fono" => "required|numeric",
+        "dir" => "required|regex:/^[\pL\s\.\'\"\,0-9áéíóúÁÉÍÓÚñÑ]+$/u",
     ];
 
     public $mensajes = [
         "tipo_ci.required" => "Este campo es obligatorio",
         "nro_ci.required" => "Este campo es obligatorio",
+        "nro_ci.numeric" => "Debes ingresar un valor númerico",
         "fecha_nacimiento.required" => "Este campo es obligatorio",
+        "fecha_nacimiento.date" => "Debes ingresar una fecha valida",
         "lugar_nacimiento.required" => "Este campo es obligatorio",
+        "lugar_nacimiento.regex" => "El formato ingresado es incorrecto",
         "genero.required" => "Este campo es obligatorio",
         "foto.required" => "Este campo es obligatorio",
         "fono.required" => "Este campo es obligatorio",
+        "fono.numeric" => "Debes ingresar un valor númerico",
         "dir.required" => "Este campo es obligatorio",
+        "dir.regex" => "El formato ingresado es incorrecto",
         "hoja_vida.required" => "Este campo es obligatorio",
     ];
 

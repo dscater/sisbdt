@@ -11,6 +11,7 @@
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ asset('assets/templateadmin/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/templateadmin/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
     <style>
         .card.card-flush .card-body {
             overflow: auto;
@@ -174,7 +175,7 @@
                                         <i class="fa fa-users">
                                         </i>
                                     </span>
-                                    <span class="menu-title">Postulantes</span>
+                                    <span class="menu-title">Carreras</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
@@ -379,6 +380,7 @@
     <script src="{{ asset('js/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('js/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('js/datatable.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             toastr.options = {

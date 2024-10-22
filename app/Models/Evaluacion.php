@@ -48,4 +48,9 @@ class Evaluacion extends Model
     {
         return $this->hasMany(EvaluacionDistincion::class, 'evaluacion_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
